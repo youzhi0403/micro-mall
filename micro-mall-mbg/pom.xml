@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.youzhi</groupId>
-  <artifactId>mirco-mall-mbg</artifactId>
+  <artifactId>micro-mall-mbg</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>mirco-mall-mbg</name>
+  <name>micro-mall-mbg</name>
   <description>mybatis-generator生成实体类和mapper</description>
 
   <dependencies>

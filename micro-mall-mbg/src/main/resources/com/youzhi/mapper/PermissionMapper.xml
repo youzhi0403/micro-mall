@@ -10,6 +10,9 @@
     <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, parent_id, name, description, create_time, create_user_id, level, type
+    id, parent_id, name, description, create_time, create_user_id, level, type, value, 
+    icon, uri
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.PermissionExample" resultMap="BaseResultMap">
     select
@@ -108,10 +112,12 @@
     </selectKey>
     insert into permission (parent_id, name, description, 
       create_time, create_user_id, level, 
-      type)
+      type, value, icon, 
+      uri)
     values (#{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER})
+      #{type,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{uri,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.Permission">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -140,6 +146,15 @@
       <if test="type != null">
         type,
       </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="uri != null">
+        uri,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="parentId != null">
@@ -162,6 +177,15 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null">
+        #{uri,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +222,15 @@
       <if test="record.type != null">
         type = #{record.type,jdbcType=INTEGER},
       </if>
+      <if test="record.value != null">
+        value = #{record.value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uri != null">
+        uri = #{record.uri,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +245,10 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       create_user_id = #{record.createUserId,jdbcType=INTEGER},
       level = #{record.level,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=INTEGER}
+      type = #{record.type,jdbcType=INTEGER},
+      value = #{record.value,jdbcType=VARCHAR},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      uri = #{record.uri,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +277,15 @@
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
       </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null">
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -252,7 +297,10 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user_id = #{createUserId,jdbcType=INTEGER},
       level = #{level,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER}
+      type = #{type,jdbcType=INTEGER},
+      value = #{value,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

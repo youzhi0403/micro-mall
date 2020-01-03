@@ -60,6 +60,27 @@ public class Permission implements Serializable {
      */
     private Integer type;
 
+    /**
+     * 权限值
+     *
+     * @mbggenerated
+     */
+    private String value;
+
+    /**
+     * 图表
+     *
+     * @mbggenerated
+     */
+    private String icon;
+
+    /**
+     * 前端资源路径
+     *
+     * @mbggenerated
+     */
+    private String uri;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -126,6 +147,30 @@ public class Permission implements Serializable {
         this.type = type;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -140,6 +185,9 @@ public class Permission implements Serializable {
         sb.append(", createUserId=").append(createUserId);
         sb.append(", level=").append(level);
         sb.append(", type=").append(type);
+        sb.append(", value=").append(value);
+        sb.append(", icon=").append(icon);
+        sb.append(", uri=").append(uri);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

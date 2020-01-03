@@ -10,6 +10,7 @@
     <result column="pay_password" jdbcType="VARCHAR" property="payPassword" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="balance" jdbcType="INTEGER" property="balance" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, avatar, nickname, telephone, login_password, pay_password, account, balance
+    id, avatar, nickname, telephone, login_password, pay_password, account, balance, 
+    create_time
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.UserExample" resultMap="BaseResultMap">
     select
@@ -108,10 +110,10 @@
     </selectKey>
     insert into user (avatar, nickname, telephone, 
       login_password, pay_password, account, 
-      balance)
+      balance, create_time)
     values (#{avatar,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{loginPassword,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{balance,jdbcType=INTEGER})
+      #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -140,6 +142,9 @@
       <if test="balance != null">
         balance,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="avatar != null">
@@ -162,6 +167,9 @@
       </if>
       <if test="balance != null">
         #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -198,6 +206,9 @@
       <if test="record.balance != null">
         balance = #{record.balance,jdbcType=INTEGER},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +223,8 @@
       login_password = #{record.loginPassword,jdbcType=VARCHAR},
       pay_password = #{record.payPassword,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
-      balance = #{record.balance,jdbcType=INTEGER}
+      balance = #{record.balance,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +253,9 @@
       <if test="balance != null">
         balance = #{balance,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -252,7 +267,8 @@
       login_password = #{loginPassword,jdbcType=VARCHAR},
       pay_password = #{payPassword,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
-      balance = #{balance,jdbcType=INTEGER}
+      balance = #{balance,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -2,7 +2,7 @@ package com.youzhi.model;
 
 import java.io.Serializable;
 
-public class UserRoleRelation implements Serializable {
+public class AdminRoleRelation implements Serializable {
     /**
      * 关联表id
      *
@@ -18,11 +18,11 @@ public class UserRoleRelation implements Serializable {
     private Integer roleId;
 
     /**
-     * 用户id
+     * 管理员id
      *
      * @mbggenerated
      */
-    private Integer userId;
+    private Integer adminId;
 
     private static final long serialVersionUID = 1L;
 
@@ -42,12 +42,12 @@ public class UserRoleRelation implements Serializable {
         this.roleId = roleId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getAdminId() {
+        return adminId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class UserRoleRelation implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", roleId=").append(roleId);
-        sb.append(", userId=").append(userId);
+        sb.append(", adminId=").append(adminId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

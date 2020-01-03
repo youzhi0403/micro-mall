@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : youzhi
+ Source Server         : localhost
  Source Server Type    : MySQL
  Source Server Version : 50726
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 05/12/2019 16:20:49
+ Date: 03/01/2020 17:11:52
 */
 
 SET NAMES utf8mb4;
@@ -41,6 +41,61 @@ CREATE TABLE `address`  (
   `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
   `address_info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '具体地址',
   `is_default` int(2) NULL DEFAULT NULL COMMENT '是否为默认地址 1默认 2非默认',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin`  (
+  `id` int(11) NOT NULL COMMENT '后台管理员id',
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录账号',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
+  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
+  `status` int(1) NULL DEFAULT NULL COMMENT '帐号启用状态：0->禁用；1->启用',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for admin_login_log
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_login_log`;
+CREATE TABLE `admin_login_log`  (
+  `id` bigint(20) NOT NULL COMMENT '登录日志id',
+  `admin_id` int(255) NULL DEFAULT NULL COMMENT '登录人id',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登陆ip',
+  `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登陆地址',
+  `user_agent` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浏览器登陆类型',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for admin_permission_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_permission_relation`;
+CREATE TABLE `admin_permission_relation`  (
+  `id` int(11) NOT NULL COMMENT '关联表id',
+  `admin_id` int(11) NULL DEFAULT NULL COMMENT '管理员id',
+  `permission_id` int(11) NULL DEFAULT NULL COMMENT '权限id',
+  `type` int(1) NULL DEFAULT NULL COMMENT '类型 1->+，-1->-',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for admin_role_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_role_relation`;
+CREATE TABLE `admin_role_relation`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '关联表id',
+  `role_id` int(11) NULL DEFAULT NULL COMMENT '角色id',
+  `admin_id` int(11) NULL DEFAULT NULL COMMENT '管理员id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -307,6 +362,9 @@ CREATE TABLE `permission`  (
   `create_user_id` int(11) NULL DEFAULT NULL COMMENT '创建人id',
   `level` int(2) NULL DEFAULT NULL COMMENT '所处层级',
   `type` int(2) NULL DEFAULT NULL COMMENT '权限类型 1菜单 2按钮',
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限值',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图表',
+  `uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端资源路径',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -371,18 +429,23 @@ CREATE TABLE `user`  (
   `pay_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付密码',
   `account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '账号',
   `balance` int(255) NULL DEFAULT NULL COMMENT '余额',
+  `create_time` datetime(0) NOT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for user_role_relation
+-- Table structure for user_login_log
 -- ----------------------------
-DROP TABLE IF EXISTS `user_role_relation`;
-CREATE TABLE `user_role_relation`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '关联表id',
-  `role_id` int(11) NULL DEFAULT NULL COMMENT '角色id',
+DROP TABLE IF EXISTS `user_login_log`;
+CREATE TABLE `user_login_log`  (
+  `id` bigint(20) NOT NULL COMMENT '用户登录日志id',
   `user_id` int(11) NULL DEFAULT NULL COMMENT '用户id',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ip',
+  `city` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录城市',
+  `login_type` int(1) NULL DEFAULT NULL COMMENT '登录类型：0->PC；1->android;2->ios;3->小程序',
+  `province` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录省份',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

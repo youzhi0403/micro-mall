@@ -23,8 +23,13 @@
                     and apr.admin_id = #{adminId}
             )
         union
-
-
-
+        select
+            p.*
+        from
+            admin_permission_relation apr
+            left join permission p on p.id = apr.permission_id
+        where
+            apr.type = 1
+            and apr.admin_id = #{adminId}
     </select>
 </mapper>

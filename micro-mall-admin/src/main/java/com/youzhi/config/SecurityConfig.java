@@ -50,7 +50,8 @@ public class SecurityConfig {
         };
     }
 
-    /*public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter(){
+    /*@Bean
+    public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter(){
         return new JwtAuthenticationTokenFilter();
     }*/
 

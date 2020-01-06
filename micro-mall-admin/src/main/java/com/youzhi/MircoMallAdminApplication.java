@@ -8,5 +8,4 @@ public class MircoMallAdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(MircoMallAdminApplication.class, args);
     }
-
 }

@@ -5,8 +5,8 @@
 
     <groupId>com.youzhi</groupId>
     <artifactId>micro-mall-admin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.0</version>
+    <packaging>war</packaging>
 
     <name>micro-mall-admin</name>
     <description>micro-mall后台管理系统</description>
@@ -78,12 +78,6 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.0</version>
         </dependency>
-        <!--集成logstash-->
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>4.8</version>
-        </dependency>
         <!--Swagger-ui API文档生产工具-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -95,6 +89,14 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
         </dependency>
+
+        <!--集成logstash-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>4.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>

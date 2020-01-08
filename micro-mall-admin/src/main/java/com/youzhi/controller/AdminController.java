@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +59,19 @@ public class AdminController {
         tokenMap.put("token",token);
         tokenMap.put("tokenHead",tokenHead);
         return new CommonResult().success(tokenMap);
+    }
+
+    @ApiOperation(value = "获取当前登录用户信息")
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAdminInfo(Principal principal){
+        String username = principal.getName();
+        Admin admin = adminService.getAdminByUsername(username);
+        Map<String,Object> data = new HashMap<>();
+        data.put("username",admin.getUsername());
+        data.put("roles",new String[]{"TEST"});
+        data.put("icon",admin.getIcon());
+        return new CommonResult().success(data);
     }
 
 }

@@ -20,6 +20,8 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+
 /**
  * @author cwj
  * @date 2020/1/6 10:24
@@ -67,6 +69,7 @@ public class AdminController {
     public Object getAdminInfo(Principal principal){
         String username = principal.getName();
         Admin admin = adminService.getAdminByUsername(username);
+        LOGGER.info("admin:{}" + admin);
         Map<String,Object> data = new HashMap<>();
         data.put("username",admin.getUsername());
         data.put("roles",new String[]{"TEST"});

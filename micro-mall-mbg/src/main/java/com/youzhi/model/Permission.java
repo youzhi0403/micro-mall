@@ -54,7 +54,7 @@ public class Permission implements Serializable {
     private Integer level;
 
     /**
-     * 权限类型 1菜单 2按钮
+     * 权限类型 1目录 2菜单 3功能
      *
      * @mbggenerated
      */
@@ -68,7 +68,7 @@ public class Permission implements Serializable {
     private String value;
 
     /**
-     * 图表
+     * 图标
      *
      * @mbggenerated
      */
@@ -80,6 +80,13 @@ public class Permission implements Serializable {
      * @mbggenerated
      */
     private String uri;
+
+    /**
+     * 排序
+     *
+     * @mbggenerated
+     */
+    private Integer sort;
 
     private static final long serialVersionUID = 1L;
 
@@ -171,6 +178,14 @@ public class Permission implements Serializable {
         this.uri = uri;
     }
 
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -188,6 +203,7 @@ public class Permission implements Serializable {
         sb.append(", value=").append(value);
         sb.append(", icon=").append(icon);
         sb.append(", uri=").append(uri);
+        sb.append(", sort=").append(sort);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

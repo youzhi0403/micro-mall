@@ -25,7 +25,7 @@ public class AdminPermissionRelation implements Serializable {
     private Integer permissionId;
 
     /**
-     * 类型 1->+，2->-
+     * 类型 1->+，-1->-
      *
      * @mbggenerated
      */

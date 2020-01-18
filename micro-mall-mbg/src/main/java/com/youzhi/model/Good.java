@@ -153,11 +153,18 @@ public class Good implements Serializable {
     private Integer updateUserId;
 
     /**
-     * 商品状态 1正常 2无货 3下架
+     * 商品状态 1-正常 2-无货 3-下架
      *
      * @mbggenerated
      */
     private Integer status;
+
+    /**
+     * 0-未删除 1-删除
+     *
+     * @mbggenerated
+     */
+    private Integer deleteStatus;
 
     private static final long serialVersionUID = 1L;
 
@@ -337,6 +344,14 @@ public class Good implements Serializable {
         this.status = status;
     }
 
+    public Integer getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Integer deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -365,6 +380,7 @@ public class Good implements Serializable {
         sb.append(", createUserId=").append(createUserId);
         sb.append(", updateUserId=").append(updateUserId);
         sb.append(", status=").append(status);
+        sb.append(", deleteStatus=").append(deleteStatus);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

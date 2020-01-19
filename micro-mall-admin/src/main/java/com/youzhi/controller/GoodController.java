@@ -8,6 +8,9 @@ import com.youzhi.model.Good;
 import com.youzhi.service.GoodService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,6 +31,7 @@ import java.util.List;
 @Api(tags = "goodController",description = "商品管理")
 @RequestMapping("/good")
 public class GoodController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GoodController.class);
 
     @Autowired
     private GoodService goodService;
@@ -83,5 +88,14 @@ public class GoodController {
         }
     }
 
+    @ApiOperation(value = "导入商品excel表",httpMethod = "POST",notes = "notes")
+    @RequestMapping(value = "/import",method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAuthority('good:add')")
+    public Object importGoods(@RequestParam(value = "file",required = true)
+                                          @ApiParam(value = "上传的文件",required = true) MultipartFile file){
+        LOGGER.info("{}",file.getName());
+        return new CommonResult().success(null);
+    }
 
 }

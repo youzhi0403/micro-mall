@@ -5,12 +5,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
+import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author cwj
@@ -35,7 +42,9 @@ public class Swagger2Config implements WebMvcConfigurer {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.youzhi.controller"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                /*.globalOperationParameters(globalOperation());*/
+                .securitySchemes(security()); //统一填写一次token
     }
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
@@ -44,5 +53,20 @@ public class Swagger2Config implements WebMvcConfigurer {
                 .contact("youzhi")
                 .version("1.0")
                 .build();
+    }
+
+    private List<Parameter> globalOperation(){
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<>();
+        //第一个token为传参的key第二个token为swagger页面显示的值
+        tokenPar.name("Authorization").description("token").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        pars.add(tokenPar.build());
+        return pars;
+    }
+
+    private List<ApiKey> security(){
+        List<ApiKey> apiKeyList = new ArrayList<>();
+        apiKeyList.add(new ApiKey("Authorization","token","header"));
+        return apiKeyList;
     }
 }

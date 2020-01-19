@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.youzhi.dao.AdminRoleRelationDao">
-    <select id="getPermissionList" resultMap="com.youzhi.mapper.PermissionMapper.BaseResultMap">
+<mapper namespace="com.youzhi.dao.GoodDao">
+    <resultMap id="goodResultResultMap" type="com.youzhi.dto.GoodResult" extends="com.youzhi.mapper.GoodMapper.BaseResultMap">
+        <collection property="classificationList" resultMap="com.youzhi.mapper.ClassificationMapper.BaseResultMap" columnPrefix="classification_"></collection>
+    </resultMap>
 
+    <select id="getList" resultMap="goodResultResultMap">
+        select g.*,cla.*
+        from
+          good g
+          left join good_classification_relation gcr on gcr.good_id = g.id
+          left join classification cla on cla.id = gcr.classification_id
+        where
+          g.delete_status = 0
+          <if test="queryParam.keyword != null and queryParam.keyword != ''">
+            and g.name like %#{queryParam.keyword}%
+          </if>
+          <if test="queryParam.status != null">
+            and g.status = #{queryParam.status}
+          </if>
+          <if test="queryParam.classificationId != null">
+            and cla.id = #{queryParam.classificationId}
+          </if>
     </select>
 </mapper>

@@ -8,13 +8,13 @@
     <result column="imgs" jdbcType="VARCHAR" property="imgs" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="sales" jdbcType="INTEGER" property="sales" />
-    <result column="function" jdbcType="VARCHAR" property="function" />
+    <result column="good_function" jdbcType="VARCHAR" property="goodFunction" />
     <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
     <result column="good_number" jdbcType="VARCHAR" property="goodNumber" />
     <result column="good_type" jdbcType="VARCHAR" property="goodType" />
     <result column="approval_number" jdbcType="VARCHAR" property="approvalNumber" />
     <result column="specification" jdbcType="VARCHAR" property="specification" />
-    <result column="usage" jdbcType="VARCHAR" property="usage" />
+    <result column="good_usage" jdbcType="VARCHAR" property="goodUsage" />
     <result column="common_name" jdbcType="VARCHAR" property="commonName" />
     <result column="untoward_effect" jdbcType="VARCHAR" property="untowardEffect" />
     <result column="taboo" jdbcType="VARCHAR" property="taboo" />
@@ -85,9 +85,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, full_name, imgs, price, sales, function, manufacturer, good_number, good_type, 
-    approval_number, specification, usage, common_name, untoward_effect, taboo, inventory, 
-    create_time, update_time, create_user_id, update_user_id, status, delete_status
+    id, name, full_name, imgs, price, sales, good_function, manufacturer, good_number, 
+    good_type, approval_number, specification, good_usage, common_name, untoward_effect, 
+    taboo, inventory, create_time, update_time, create_user_id, update_user_id, status, 
+    delete_status
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.GoodExample" resultMap="BaseResultMap">
     select
@@ -124,17 +125,17 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into good (name, full_name, imgs, 
-      price, sales, function, 
+      price, sales, good_function, 
       manufacturer, good_number, good_type, 
-      approval_number, specification, usage, 
+      approval_number, specification, good_usage, 
       common_name, untoward_effect, taboo, 
       inventory, create_time, update_time, 
       create_user_id, update_user_id, status, 
       delete_status)
     values (#{name,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DECIMAL}, #{sales,jdbcType=INTEGER}, #{function,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{sales,jdbcType=INTEGER}, #{goodFunction,jdbcType=VARCHAR}, 
       #{manufacturer,jdbcType=VARCHAR}, #{goodNumber,jdbcType=VARCHAR}, #{goodType,jdbcType=VARCHAR}, 
-      #{approvalNumber,jdbcType=VARCHAR}, #{specification,jdbcType=VARCHAR}, #{usage,jdbcType=VARCHAR}, 
+      #{approvalNumber,jdbcType=VARCHAR}, #{specification,jdbcType=VARCHAR}, #{goodUsage,jdbcType=VARCHAR}, 
       #{commonName,jdbcType=VARCHAR}, #{untowardEffect,jdbcType=VARCHAR}, #{taboo,jdbcType=VARCHAR}, 
       #{inventory,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{createUserId,jdbcType=INTEGER}, #{updateUserId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
@@ -161,8 +162,8 @@
       <if test="sales != null">
         sales,
       </if>
-      <if test="function != null">
-        function,
+      <if test="goodFunction != null">
+        good_function,
       </if>
       <if test="manufacturer != null">
         manufacturer,
@@ -179,8 +180,8 @@
       <if test="specification != null">
         specification,
       </if>
-      <if test="usage != null">
-        usage,
+      <if test="goodUsage != null">
+        good_usage,
       </if>
       <if test="commonName != null">
         common_name,
@@ -229,8 +230,8 @@
       <if test="sales != null">
         #{sales,jdbcType=INTEGER},
       </if>
-      <if test="function != null">
-        #{function,jdbcType=VARCHAR},
+      <if test="goodFunction != null">
+        #{goodFunction,jdbcType=VARCHAR},
       </if>
       <if test="manufacturer != null">
         #{manufacturer,jdbcType=VARCHAR},
@@ -247,8 +248,8 @@
       <if test="specification != null">
         #{specification,jdbcType=VARCHAR},
       </if>
-      <if test="usage != null">
-        #{usage,jdbcType=VARCHAR},
+      <if test="goodUsage != null">
+        #{goodUsage,jdbcType=VARCHAR},
       </if>
       <if test="commonName != null">
         #{commonName,jdbcType=VARCHAR},
@@ -309,8 +310,8 @@
       <if test="record.sales != null">
         sales = #{record.sales,jdbcType=INTEGER},
       </if>
-      <if test="record.function != null">
-        function = #{record.function,jdbcType=VARCHAR},
+      <if test="record.goodFunction != null">
+        good_function = #{record.goodFunction,jdbcType=VARCHAR},
       </if>
       <if test="record.manufacturer != null">
         manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
@@ -327,8 +328,8 @@
       <if test="record.specification != null">
         specification = #{record.specification,jdbcType=VARCHAR},
       </if>
-      <if test="record.usage != null">
-        usage = #{record.usage,jdbcType=VARCHAR},
+      <if test="record.goodUsage != null">
+        good_usage = #{record.goodUsage,jdbcType=VARCHAR},
       </if>
       <if test="record.commonName != null">
         common_name = #{record.commonName,jdbcType=VARCHAR},
@@ -373,13 +374,13 @@
       imgs = #{record.imgs,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       sales = #{record.sales,jdbcType=INTEGER},
-      function = #{record.function,jdbcType=VARCHAR},
+      good_function = #{record.goodFunction,jdbcType=VARCHAR},
       manufacturer = #{record.manufacturer,jdbcType=VARCHAR},
       good_number = #{record.goodNumber,jdbcType=VARCHAR},
       good_type = #{record.goodType,jdbcType=VARCHAR},
       approval_number = #{record.approvalNumber,jdbcType=VARCHAR},
       specification = #{record.specification,jdbcType=VARCHAR},
-      usage = #{record.usage,jdbcType=VARCHAR},
+      good_usage = #{record.goodUsage,jdbcType=VARCHAR},
       common_name = #{record.commonName,jdbcType=VARCHAR},
       untoward_effect = #{record.untowardEffect,jdbcType=VARCHAR},
       taboo = #{record.taboo,jdbcType=VARCHAR},
@@ -412,8 +413,8 @@
       <if test="sales != null">
         sales = #{sales,jdbcType=INTEGER},
       </if>
-      <if test="function != null">
-        function = #{function,jdbcType=VARCHAR},
+      <if test="goodFunction != null">
+        good_function = #{goodFunction,jdbcType=VARCHAR},
       </if>
       <if test="manufacturer != null">
         manufacturer = #{manufacturer,jdbcType=VARCHAR},
@@ -430,8 +431,8 @@
       <if test="specification != null">
         specification = #{specification,jdbcType=VARCHAR},
       </if>
-      <if test="usage != null">
-        usage = #{usage,jdbcType=VARCHAR},
+      <if test="goodUsage != null">
+        good_usage = #{goodUsage,jdbcType=VARCHAR},
       </if>
       <if test="commonName != null">
         common_name = #{commonName,jdbcType=VARCHAR},
@@ -473,13 +474,13 @@
       imgs = #{imgs,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       sales = #{sales,jdbcType=INTEGER},
-      function = #{function,jdbcType=VARCHAR},
+      good_function = #{goodFunction,jdbcType=VARCHAR},
       manufacturer = #{manufacturer,jdbcType=VARCHAR},
       good_number = #{goodNumber,jdbcType=VARCHAR},
       good_type = #{goodType,jdbcType=VARCHAR},
       approval_number = #{approvalNumber,jdbcType=VARCHAR},
       specification = #{specification,jdbcType=VARCHAR},
-      usage = #{usage,jdbcType=VARCHAR},
+      good_usage = #{goodUsage,jdbcType=VARCHAR},
       common_name = #{commonName,jdbcType=VARCHAR},
       untoward_effect = #{untowardEffect,jdbcType=VARCHAR},
       taboo = #{taboo,jdbcType=VARCHAR},

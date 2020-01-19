@@ -52,7 +52,7 @@ public class Good implements Serializable {
      *
      * @mbggenerated
      */
-    private String function;
+    private String goodFunction;
 
     /**
      * 生产厂家
@@ -94,7 +94,7 @@ public class Good implements Serializable {
      *
      * @mbggenerated
      */
-    private String usage;
+    private String goodUsage;
 
     /**
      * 通用名称
@@ -216,12 +216,12 @@ public class Good implements Serializable {
         this.sales = sales;
     }
 
-    public String getFunction() {
-        return function;
+    public String getGoodFunction() {
+        return goodFunction;
     }
 
-    public void setFunction(String function) {
-        this.function = function;
+    public void setGoodFunction(String goodFunction) {
+        this.goodFunction = goodFunction;
     }
 
     public String getManufacturer() {
@@ -264,12 +264,12 @@ public class Good implements Serializable {
         this.specification = specification;
     }
 
-    public String getUsage() {
-        return usage;
+    public String getGoodUsage() {
+        return goodUsage;
     }
 
-    public void setUsage(String usage) {
-        this.usage = usage;
+    public void setGoodUsage(String goodUsage) {
+        this.goodUsage = goodUsage;
     }
 
     public String getCommonName() {
@@ -364,13 +364,13 @@ public class Good implements Serializable {
         sb.append(", imgs=").append(imgs);
         sb.append(", price=").append(price);
         sb.append(", sales=").append(sales);
-        sb.append(", function=").append(function);
+        sb.append(", goodFunction=").append(goodFunction);
         sb.append(", manufacturer=").append(manufacturer);
         sb.append(", goodNumber=").append(goodNumber);
         sb.append(", goodType=").append(goodType);
         sb.append(", approvalNumber=").append(approvalNumber);
         sb.append(", specification=").append(specification);
-        sb.append(", usage=").append(usage);
+        sb.append(", goodUsage=").append(goodUsage);
         sb.append(", commonName=").append(commonName);
         sb.append(", untowardEffect=").append(untowardEffect);
         sb.append(", taboo=").append(taboo);

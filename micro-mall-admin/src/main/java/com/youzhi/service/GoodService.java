@@ -2,6 +2,7 @@ package com.youzhi.service;
 
 import com.youzhi.dto.GoodParam;
 import com.youzhi.dto.GoodQueryParam;
+import com.youzhi.dto.GoodResult;
 import com.youzhi.model.Good;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,5 +26,11 @@ public interface GoodService {
     int addGood(GoodParam goodParam);
 
 
-    List<Good> list(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum);
+    List<GoodResult> list(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum);
+
+    @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
+    int updateGood(Integer id, GoodParam goodParam);
+
+
+    int deleteGood(Integer id);
 }

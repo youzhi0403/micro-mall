@@ -496,73 +496,73 @@ public class GoodExample {
             return (Criteria) this;
         }
 
-        public Criteria andFunctionIsNull() {
-            addCriterion("function is null");
+        public Criteria andGoodFunctionIsNull() {
+            addCriterion("good_function is null");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionIsNotNull() {
-            addCriterion("function is not null");
+        public Criteria andGoodFunctionIsNotNull() {
+            addCriterion("good_function is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionEqualTo(String value) {
-            addCriterion("function =", value, "function");
+        public Criteria andGoodFunctionEqualTo(String value) {
+            addCriterion("good_function =", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionNotEqualTo(String value) {
-            addCriterion("function <>", value, "function");
+        public Criteria andGoodFunctionNotEqualTo(String value) {
+            addCriterion("good_function <>", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionGreaterThan(String value) {
-            addCriterion("function >", value, "function");
+        public Criteria andGoodFunctionGreaterThan(String value) {
+            addCriterion("good_function >", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionGreaterThanOrEqualTo(String value) {
-            addCriterion("function >=", value, "function");
+        public Criteria andGoodFunctionGreaterThanOrEqualTo(String value) {
+            addCriterion("good_function >=", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionLessThan(String value) {
-            addCriterion("function <", value, "function");
+        public Criteria andGoodFunctionLessThan(String value) {
+            addCriterion("good_function <", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionLessThanOrEqualTo(String value) {
-            addCriterion("function <=", value, "function");
+        public Criteria andGoodFunctionLessThanOrEqualTo(String value) {
+            addCriterion("good_function <=", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionLike(String value) {
-            addCriterion("function like", value, "function");
+        public Criteria andGoodFunctionLike(String value) {
+            addCriterion("good_function like", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionNotLike(String value) {
-            addCriterion("function not like", value, "function");
+        public Criteria andGoodFunctionNotLike(String value) {
+            addCriterion("good_function not like", value, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionIn(List<String> values) {
-            addCriterion("function in", values, "function");
+        public Criteria andGoodFunctionIn(List<String> values) {
+            addCriterion("good_function in", values, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionNotIn(List<String> values) {
-            addCriterion("function not in", values, "function");
+        public Criteria andGoodFunctionNotIn(List<String> values) {
+            addCriterion("good_function not in", values, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionBetween(String value1, String value2) {
-            addCriterion("function between", value1, value2, "function");
+        public Criteria andGoodFunctionBetween(String value1, String value2) {
+            addCriterion("good_function between", value1, value2, "goodFunction");
             return (Criteria) this;
         }
 
-        public Criteria andFunctionNotBetween(String value1, String value2) {
-            addCriterion("function not between", value1, value2, "function");
+        public Criteria andGoodFunctionNotBetween(String value1, String value2) {
+            addCriterion("good_function not between", value1, value2, "goodFunction");
             return (Criteria) this;
         }
 
@@ -916,73 +916,73 @@ public class GoodExample {
             return (Criteria) this;
         }
 
-        public Criteria andUsageIsNull() {
-            addCriterion("usage is null");
+        public Criteria andGoodUsageIsNull() {
+            addCriterion("good_usage is null");
             return (Criteria) this;
         }
 
-        public Criteria andUsageIsNotNull() {
-            addCriterion("usage is not null");
+        public Criteria andGoodUsageIsNotNull() {
+            addCriterion("good_usage is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUsageEqualTo(String value) {
-            addCriterion("usage =", value, "usage");
+        public Criteria andGoodUsageEqualTo(String value) {
+            addCriterion("good_usage =", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotEqualTo(String value) {
-            addCriterion("usage <>", value, "usage");
+        public Criteria andGoodUsageNotEqualTo(String value) {
+            addCriterion("good_usage <>", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageGreaterThan(String value) {
-            addCriterion("usage >", value, "usage");
+        public Criteria andGoodUsageGreaterThan(String value) {
+            addCriterion("good_usage >", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageGreaterThanOrEqualTo(String value) {
-            addCriterion("usage >=", value, "usage");
+        public Criteria andGoodUsageGreaterThanOrEqualTo(String value) {
+            addCriterion("good_usage >=", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageLessThan(String value) {
-            addCriterion("usage <", value, "usage");
+        public Criteria andGoodUsageLessThan(String value) {
+            addCriterion("good_usage <", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageLessThanOrEqualTo(String value) {
-            addCriterion("usage <=", value, "usage");
+        public Criteria andGoodUsageLessThanOrEqualTo(String value) {
+            addCriterion("good_usage <=", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageLike(String value) {
-            addCriterion("usage like", value, "usage");
+        public Criteria andGoodUsageLike(String value) {
+            addCriterion("good_usage like", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotLike(String value) {
-            addCriterion("usage not like", value, "usage");
+        public Criteria andGoodUsageNotLike(String value) {
+            addCriterion("good_usage not like", value, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageIn(List<String> values) {
-            addCriterion("usage in", values, "usage");
+        public Criteria andGoodUsageIn(List<String> values) {
+            addCriterion("good_usage in", values, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotIn(List<String> values) {
-            addCriterion("usage not in", values, "usage");
+        public Criteria andGoodUsageNotIn(List<String> values) {
+            addCriterion("good_usage not in", values, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageBetween(String value1, String value2) {
-            addCriterion("usage between", value1, value2, "usage");
+        public Criteria andGoodUsageBetween(String value1, String value2) {
+            addCriterion("good_usage between", value1, value2, "goodUsage");
             return (Criteria) this;
         }
 
-        public Criteria andUsageNotBetween(String value1, String value2) {
-            addCriterion("usage not between", value1, value2, "usage");
+        public Criteria andGoodUsageNotBetween(String value1, String value2) {
+            addCriterion("good_usage not between", value1, value2, "goodUsage");
             return (Criteria) this;
         }
 

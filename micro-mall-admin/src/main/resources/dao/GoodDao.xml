@@ -23,4 +23,38 @@
             and cla.id = #{queryParam.classificationId}
           </if>
     </select>
+
+    <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into good
+        (name,full_name,imgs,price,sales,good_function,manufacturer,good_number,good_type,approval_number,specification,good_usage,common_name,untoward_effect,taboo,inventory,create_time,update_time,create_user_id,update_user_id,status,delete_status)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+              #{item.name},
+              #{item.fullName},
+              #{item.imgs},
+              #{item.price},
+              #{item.sales},
+              #{item.goodFunction},
+              #{item.manufacturer},
+              #{item.goodNumber},
+              #{item.goodType},
+              #{item.approvalNumber},
+              #{item.specification},
+              #{item.goodUsage},
+              #{item.commonName},
+              #{item.untowardEffect},
+              #{item.taboo},
+              #{item.inventory},
+              #{item.createTime},
+              #{item.updateTime},
+              #{item.createUserId},
+              #{item.updateUserId},
+              #{item.status},
+              #{item.deleteStatus}
+            )
+        </foreach>
+    </insert>
+
+
 </mapper>

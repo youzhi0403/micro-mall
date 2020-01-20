@@ -5,6 +5,9 @@ import com.youzhi.model.UserLoginLogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+* Created by Mybatis Generator 2020/01/20
+*/
 public interface UserLoginLogMapper {
     int countByExample(UserLoginLogExample example);
 

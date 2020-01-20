@@ -2,7 +2,14 @@ package com.youzhi.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class AccountRecord implements Serializable {
     /**
      * 支入支出明细id
@@ -47,54 +54,6 @@ public class AccountRecord implements Serializable {
     private String typename;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Integer getMoney() {
-        return money;
-    }
-
-    public void setMoney(Integer money) {
-        this.money = money;
-    }
-
-    public String getTypename() {
-        return typename;
-    }
-
-    public void setTypename(String typename) {
-        this.typename = typename;
-    }
 
     @Override
     public String toString() {

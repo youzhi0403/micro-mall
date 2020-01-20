@@ -2,7 +2,14 @@ package com.youzhi.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class Role implements Serializable {
     /**
      * 角色id
@@ -40,46 +47,6 @@ public class Role implements Serializable {
     private Integer createUserId;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Integer getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(Integer createUserId) {
-        this.createUserId = createUserId;
-    }
 
     @Override
     public String toString() {

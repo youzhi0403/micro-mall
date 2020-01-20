@@ -1,7 +1,14 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class CouponsUserRelation implements Serializable {
     /**
      * 关联表id
@@ -25,30 +32,6 @@ public class CouponsUserRelation implements Serializable {
     private Integer couponsId;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getCouponsId() {
-        return couponsId;
-    }
-
-    public void setCouponsId(Integer couponsId) {
-        this.couponsId = couponsId;
-    }
 
     @Override
     public String toString() {

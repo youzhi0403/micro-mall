@@ -1,7 +1,14 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class Feedback implements Serializable {
     /**
      * 意见反馈id
@@ -32,38 +39,6 @@ public class Feedback implements Serializable {
     private Integer userId;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getImgs() {
-        return imgs;
-    }
-
-    public void setImgs(String imgs) {
-        this.imgs = imgs;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     @Override
     public String toString() {

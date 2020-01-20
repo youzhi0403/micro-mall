@@ -2,7 +2,14 @@ package com.youzhi.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class Footprint implements Serializable {
     /**
      * 足迹id
@@ -33,38 +40,6 @@ public class Footprint implements Serializable {
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getGoodId() {
-        return goodId;
-    }
-
-    public void setGoodId(Integer goodId) {
-        this.goodId = goodId;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
     @Override
     public String toString() {

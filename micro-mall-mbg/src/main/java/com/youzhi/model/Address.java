@@ -1,7 +1,14 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class Address implements Serializable {
     /**
      * 地址id
@@ -39,46 +46,6 @@ public class Address implements Serializable {
     private Integer isDefault;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getAddressInfo() {
-        return addressInfo;
-    }
-
-    public void setAddressInfo(String addressInfo) {
-        this.addressInfo = addressInfo;
-    }
-
-    public Integer getIsDefault() {
-        return isDefault;
-    }
-
-    public void setIsDefault(Integer isDefault) {
-        this.isDefault = isDefault;
-    }
 
     @Override
     public String toString() {

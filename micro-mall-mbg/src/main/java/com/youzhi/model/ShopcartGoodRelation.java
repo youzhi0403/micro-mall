@@ -1,7 +1,14 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class ShopcartGoodRelation implements Serializable {
     /**
      * 关联表id
@@ -32,38 +39,6 @@ public class ShopcartGoodRelation implements Serializable {
     private Integer goodNum;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getShopcartId() {
-        return shopcartId;
-    }
-
-    public void setShopcartId(Integer shopcartId) {
-        this.shopcartId = shopcartId;
-    }
-
-    public Integer getGoodId() {
-        return goodId;
-    }
-
-    public void setGoodId(Integer goodId) {
-        this.goodId = goodId;
-    }
-
-    public Integer getGoodNum() {
-        return goodNum;
-    }
-
-    public void setGoodNum(Integer goodNum) {
-        this.goodNum = goodNum;
-    }
 
     @Override
     public String toString() {

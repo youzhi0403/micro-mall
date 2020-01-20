@@ -3,7 +3,14 @@ package com.youzhi.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class Good implements Serializable {
     /**
      * 商品id
@@ -167,190 +174,6 @@ public class Good implements Serializable {
     private Integer deleteStatus;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getImgs() {
-        return imgs;
-    }
-
-    public void setImgs(String imgs) {
-        this.imgs = imgs;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Integer getSales() {
-        return sales;
-    }
-
-    public void setSales(Integer sales) {
-        this.sales = sales;
-    }
-
-    public String getGoodFunction() {
-        return goodFunction;
-    }
-
-    public void setGoodFunction(String goodFunction) {
-        this.goodFunction = goodFunction;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public String getGoodNumber() {
-        return goodNumber;
-    }
-
-    public void setGoodNumber(String goodNumber) {
-        this.goodNumber = goodNumber;
-    }
-
-    public String getGoodType() {
-        return goodType;
-    }
-
-    public void setGoodType(String goodType) {
-        this.goodType = goodType;
-    }
-
-    public String getApprovalNumber() {
-        return approvalNumber;
-    }
-
-    public void setApprovalNumber(String approvalNumber) {
-        this.approvalNumber = approvalNumber;
-    }
-
-    public String getSpecification() {
-        return specification;
-    }
-
-    public void setSpecification(String specification) {
-        this.specification = specification;
-    }
-
-    public String getGoodUsage() {
-        return goodUsage;
-    }
-
-    public void setGoodUsage(String goodUsage) {
-        this.goodUsage = goodUsage;
-    }
-
-    public String getCommonName() {
-        return commonName;
-    }
-
-    public void setCommonName(String commonName) {
-        this.commonName = commonName;
-    }
-
-    public String getUntowardEffect() {
-        return untowardEffect;
-    }
-
-    public void setUntowardEffect(String untowardEffect) {
-        this.untowardEffect = untowardEffect;
-    }
-
-    public String getTaboo() {
-        return taboo;
-    }
-
-    public void setTaboo(String taboo) {
-        this.taboo = taboo;
-    }
-
-    public Integer getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Integer inventory) {
-        this.inventory = inventory;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(Integer createUserId) {
-        this.createUserId = createUserId;
-    }
-
-    public Integer getUpdateUserId() {
-        return updateUserId;
-    }
-
-    public void setUpdateUserId(Integer updateUserId) {
-        this.updateUserId = updateUserId;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Integer deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
 
     @Override
     public String toString() {

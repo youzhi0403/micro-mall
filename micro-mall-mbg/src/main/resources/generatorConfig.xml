@@ -13,6 +13,10 @@
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!-- 为生成的Java模型创建一个toString方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--mybatis generator 集成 lombok-->
+        <plugin type="com.youzhi.component.LombokPlugin" >
+            <property name="hasLombok" value="true"/>
+        </plugin>
         <commentGenerator type="com.youzhi.CommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>

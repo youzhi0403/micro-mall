@@ -12,12 +12,16 @@ import com.youzhi.model.GoodClassificationRelation;
 import com.youzhi.model.GoodClassificationRelationExample;
 import com.youzhi.model.GoodExample;
 import com.youzhi.service.GoodService;
+import com.youzhi.util.ExcelUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,5 +89,38 @@ public class GoodServiceImpl implements GoodService {
     @Override
     public int deleteGood(Integer id) {
         return goodMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int importGoods(MultipartFile file) {
+        int count = 0;
+        try{
+            List<Good> goodList = new ArrayList<>();
+            List<String[]> goods = ExcelUtil.readExcel(file,1,0);
+            for(int i=0;i<goods.size();i++){
+                String[] strings = goods.get(i);
+                Good good = new Good().setName(strings[0])
+                        .setFullName(strings[1])
+                        .setImgs(strings[2])
+                        .setPrice(new BigDecimal(strings[3]))
+                        .setGoodFunction(strings[4])
+                        .setManufacturer(strings[5])
+                        .setGoodNumber(strings[6])
+                        .setGoodType(strings[7])
+                        .setApprovalNumber(strings[8])
+                        .setSpecification(strings[9])
+                        .setGoodUsage(strings[10])
+                        .setCommonName(strings[11])
+                        .setUntowardEffect(strings[12])
+                        .setTaboo(strings[13])
+                        .setStatus(Integer.parseInt(strings[14]))
+                        .setDeleteStatus(0);
+                goodList.add(good);
+            }
+            count = goodDao.addBatch(goodList);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return count;
     }
 }

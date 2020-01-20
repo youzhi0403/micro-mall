@@ -5,6 +5,9 @@ import com.youzhi.model.AdminPermissionRelationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+* Created by Mybatis Generator 2020/01/20
+*/
 public interface AdminPermissionRelationMapper {
     int countByExample(AdminPermissionRelationExample example);
 

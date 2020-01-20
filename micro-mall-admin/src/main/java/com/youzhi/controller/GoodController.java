@@ -6,6 +6,7 @@ import com.youzhi.dto.GoodQueryParam;
 import com.youzhi.dto.GoodResult;
 import com.youzhi.model.Good;
 import com.youzhi.service.GoodService;
+import com.youzhi.util.ExcelUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -20,6 +21,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -94,8 +97,15 @@ public class GoodController {
     @PreAuthorize("hasAuthority('good:add')")
     public Object importGoods(@RequestParam(value = "file",required = true)
                                           @ApiParam(value = "上传的文件",required = true) MultipartFile file){
-        LOGGER.info("{}",file.getName());
-        return new CommonResult().success(null);
+        int count = goodService.importGoods(file);
+        return new CommonResult().success(count);
+    }
+
+    @ApiOperation(value = "下载商品导入模板",httpMethod = "GET")
+    @RequestMapping(value = "/downloadTemplate",method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('good:add')")
+    public void downloadTemplate(HttpServletResponse response) throws IOException {
+        ExcelUtil.downloadTemplate(response,"goodsTemplate","商品导入模板");
     }
 
 }

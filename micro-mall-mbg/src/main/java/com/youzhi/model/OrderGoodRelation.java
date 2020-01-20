@@ -1,7 +1,14 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
+/**
+ created by mybatis generator 2020/01/20
+*/
+@Data
+@Accessors(chain = true)
 public class OrderGoodRelation implements Serializable {
     /**
      * 关联表id
@@ -32,38 +39,6 @@ public class OrderGoodRelation implements Serializable {
     private Integer goodNum;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public Integer getGoodId() {
-        return goodId;
-    }
-
-    public void setGoodId(Integer goodId) {
-        this.goodId = goodId;
-    }
-
-    public Integer getGoodNum() {
-        return goodNum;
-    }
-
-    public void setGoodNum(Integer goodNum) {
-        this.goodNum = goodNum;
-    }
 
     @Override
     public String toString() {

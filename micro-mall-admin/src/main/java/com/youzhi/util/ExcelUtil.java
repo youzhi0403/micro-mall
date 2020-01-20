@@ -8,13 +8,14 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.apache.poi.ss.usermodel.CellType;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author cwj
@@ -143,5 +144,25 @@ public class ExcelUtil {
         return cellValue;
     }
 
+    public static void downloadTemplate(HttpServletResponse response,String templateName,String targetName) throws IOException {
+        String filePath = ExcelUtil.class.getClassLoader().getResource("static/doc/" + templateName + ".xlsx").getPath();
+        File f = new File(filePath);
+        FileInputStream input = new FileInputStream(f);
+        byte[] buffer = new byte[(int) f.length()];
+        int offset = 0;
+        int numRead = 0;
+        while (offset < buffer.length && (numRead - input.read(buffer, offset, buffer.length - offset)) >= 0) {
+            offset += numRead;
+        }
+        input.close();
+        OutputStream os = response.getOutputStream();
+        response.setContentType("APPLICATION/OCTET-STREAM");
+        /*response.setContentType("multipart/form-data");*/
+        response.addHeader("Content-Disposition", "attachment;filename="
+                + new String( (targetName + ".xlsx").getBytes(), StandardCharsets.ISO_8859_1));
+        os.write(buffer);
+        os.flush();
+        os.close();
+    }
 
 }

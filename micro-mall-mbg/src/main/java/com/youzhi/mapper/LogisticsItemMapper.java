@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by Mybatis Generator 2020/01/20
+* Created by Mybatis Generator 2020/01/21
 */
 public interface LogisticsItemMapper {
     int countByExample(LogisticsItemExample example);

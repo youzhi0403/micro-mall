@@ -2,6 +2,7 @@ package com.youzhi.controller;
 
 import com.youzhi.dto.AdminLoginParam;
 import com.youzhi.dto.AdminParam;
+import com.youzhi.dto.AdminResult;
 import com.youzhi.dto.CommonResult;
 import com.youzhi.model.Admin;
 import com.youzhi.service.AdminService;
@@ -68,11 +69,11 @@ public class AdminController {
     @ResponseBody
     public Object getAdminInfo(Principal principal){
         String username = principal.getName();
-        Admin admin = adminService.getAdminByUsername(username);
+        AdminResult admin = adminService.getAdminByUsername(username);
         LOGGER.info("admin:{}" + admin);
         Map<String,Object> data = new HashMap<>();
         data.put("username",admin.getUsername());
-        data.put("roles",new String[]{"TEST"});
+        data.put("roles",admin.getRoleList());
         data.put("icon",admin.getIcon());
         return new CommonResult().success(data);
     }

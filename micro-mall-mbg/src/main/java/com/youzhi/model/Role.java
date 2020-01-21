@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/20
+ created by mybatis generator 2020/01/21
 */
 @Data
 @Accessors(chain = true)
@@ -46,6 +46,13 @@ public class Role implements Serializable {
      */
     private Integer createUserId;
 
+    /**
+     * 角色值
+     *
+     * @mbggenerated
+     */
+    private String value;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -59,6 +66,7 @@ public class Role implements Serializable {
         sb.append(", description=").append(description);
         sb.append(", createTime=").append(createTime);
         sb.append(", createUserId=").append(createUserId);
+        sb.append(", value=").append(value);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

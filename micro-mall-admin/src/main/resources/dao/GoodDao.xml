@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youzhi.dao.GoodDao">
     <resultMap id="goodResultResultMap" type="com.youzhi.dto.GoodResult" extends="com.youzhi.mapper.GoodMapper.BaseResultMap">
-        <collection property="classificationList" resultMap="com.youzhi.mapper.ClassificationMapper.BaseResultMap" columnPrefix="classification_"></collection>
+        <collection property="classificationList" resultMap="com.youzhi.mapper.ClassificationMapper.BaseResultMap" columnPrefix="classification_">
+        </collection>
     </resultMap>
 
     <select id="getList" resultMap="goodResultResultMap">

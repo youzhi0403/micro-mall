@@ -1,7 +1,9 @@
 package com.youzhi.service.impl;
 
+import com.youzhi.dao.AdminDao;
 import com.youzhi.dao.AdminRoleRelationDao;
 import com.youzhi.dto.AdminParam;
+import com.youzhi.dto.AdminResult;
 import com.youzhi.mapper.AdminLoginLogMapper;
 import com.youzhi.mapper.AdminMapper;
 import com.youzhi.model.*;
@@ -44,6 +46,8 @@ public class AdminServiceImpl implements AdminService {
     private AdminLoginLogMapper adminLoginLogMapper;
     @Autowired
     private AdminRoleRelationDao adminRoleRelationDao;
+    @Autowired
+    private AdminDao adminDao;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
     @Autowired
@@ -52,10 +56,8 @@ public class AdminServiceImpl implements AdminService {
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
-    public Admin getAdminByUsername(String username) {
-        AdminExample example = new AdminExample();
-        example.createCriteria().andUsernameEqualTo(username);
-        List<Admin> adminList = adminMapper.selectByExample(example);
+    public AdminResult getAdminByUsername(String username) {
+        List<AdminResult> adminList = adminDao.getAdminList(username);
         if(adminList != null && adminList.size() > 0){
             return adminList.get(0);
         }

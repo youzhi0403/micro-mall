@@ -40,7 +40,7 @@ public class GoodController {
     @ApiOperation("分页查询商品")
     @RequestMapping(value = "/listPage",method = RequestMethod.GET)
     @ResponseBody
-    @PreAuthorize("hasAuthority('good:read')")
+    /*@PreAuthorize("hasAuthority('good:read')")*/
     public Object listPage(GoodQueryParam goodQueryParam,
                           @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
                           @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
@@ -51,7 +51,7 @@ public class GoodController {
     @ApiOperation("添加商品")
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasAuthority('good:add')")
+    /*@PreAuthorize("hasAuthority('good:add')")*/
     public Object add(@Validated @RequestBody GoodParam goodParam, BindingResult result){
         int count = goodService.add(goodParam);
         if(count > 0){
@@ -64,7 +64,7 @@ public class GoodController {
     @ApiOperation("更新商品")
     @RequestMapping(value = "/update/{id}",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasAuthority('good:update')")
+    /*@PreAuthorize("hasAuthority('good:update')")*/
     public Object update(@PathVariable("id") Integer id,
                          @Validated @RequestBody GoodParam goodParam,
                          BindingResult result){
@@ -79,7 +79,7 @@ public class GoodController {
     @ApiOperation("删除商品")
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
     @ResponseBody
-    @PreAuthorize("hasAuthority('good:delete')")
+    /*@PreAuthorize("hasAuthority('good:delete')")*/
     public Object delete(@PathVariable("id") Integer id){
         int count = goodService.delete(id);
         if(count == 1){
@@ -92,7 +92,7 @@ public class GoodController {
     @ApiOperation(value = "导入商品excel表",httpMethod = "POST",notes = "notes")
     @RequestMapping(value = "/import",method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasAuthority('good:add')")
+    /*@PreAuthorize("hasAuthority('good:add')")*/
     public Object importGoods(@RequestParam(value = "file",required = true)
                                           @ApiParam(value = "上传的文件",required = true) MultipartFile file){
         int count = goodService.importGoods(file);

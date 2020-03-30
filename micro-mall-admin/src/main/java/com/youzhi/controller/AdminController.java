@@ -2,26 +2,26 @@ package com.youzhi.controller;
 
 import com.youzhi.dto.AdminLoginParam;
 import com.youzhi.dto.AdminParam;
-import com.youzhi.dto.AdminResult;
+import com.youzhi.dto.AdminVo;
 import com.youzhi.dto.CommonResult;
 import com.youzhi.model.Admin;
 import com.youzhi.service.AdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 /**
  * @author cwj
@@ -32,6 +32,7 @@ import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
     @Autowired
     private AdminService adminService;
     @Value("${jwt.tokenHeader}")
@@ -42,7 +43,7 @@ public class AdminController {
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     @ResponseBody
-    public Object register(@RequestBody AdminParam adminParam,BindingResult result){
+    public Object register(@Validated @RequestBody AdminParam adminParam,BindingResult result){
         Admin admin = adminService.register(adminParam);
         if(admin == null){
             return new CommonResult().failed();
@@ -53,7 +54,7 @@ public class AdminController {
     @ApiOperation(value = "登录后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Object login(@RequestBody AdminLoginParam adminLoginParam, BindingResult result){
+    public Object login(@Validated @RequestBody AdminLoginParam adminLoginParam, BindingResult result){
         String token = adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword());
         if(token == null){
             return new CommonResult().validateFailed("用户名或密码错误");
@@ -69,7 +70,7 @@ public class AdminController {
     @ResponseBody
     public Object getAdminInfo(Principal principal){
         String username = principal.getName();
-        AdminResult admin = adminService.getAdminByUsername(username);
+        AdminVo admin = adminService.getAdminByUsername(username);
         LOGGER.info("admin:{}" + admin);
         Map<String,Object> data = new HashMap<>();
         data.put("username",admin.getUsername());

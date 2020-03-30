@@ -1,7 +1,7 @@
 package com.youzhi.service;
 
 import com.youzhi.dto.AdminParam;
-import com.youzhi.dto.AdminResult;
+import com.youzhi.dto.AdminVo;
 import com.youzhi.model.Admin;
 import com.youzhi.model.Permission;
 
@@ -18,7 +18,7 @@ public interface AdminService {
      * @param username
      * @return
      */
-    AdminResult getAdminByUsername(String username);
+    AdminVo getAdminByUsername(String username);
 
     /**
      * 获取用户所有权限（包括角色权限和+-权限）

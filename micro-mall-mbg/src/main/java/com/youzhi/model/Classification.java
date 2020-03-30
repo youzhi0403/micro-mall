@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -65,14 +65,14 @@ public class Classification implements Serializable {
      *
      * @mbggenerated
      */
-    private Integer createUserId;
+    private Integer createAdminId;
 
     /**
      * 修改人id
      *
      * @mbggenerated
      */
-    private Integer updateUserId;
+    private Integer updateAdminId;
 
     private static final long serialVersionUID = 1L;
 
@@ -89,8 +89,8 @@ public class Classification implements Serializable {
         sb.append(", kind=").append(kind);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
-        sb.append(", createUserId=").append(createUserId);
-        sb.append(", updateUserId=").append(updateUserId);
+        sb.append(", createAdminId=").append(createAdminId);
+        sb.append(", updateAdminId=").append(updateAdminId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

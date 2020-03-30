@@ -4,15 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.youzhi.dao.GoodDao;
 import com.youzhi.dto.GoodParam;
 import com.youzhi.dto.GoodQueryParam;
-import com.youzhi.dto.GoodResult;
+import com.youzhi.dto.GoodVo;
 import com.youzhi.mapper.GoodClassificationRelationMapper;
 import com.youzhi.mapper.GoodMapper;
-import com.youzhi.model.Good;
-import com.youzhi.model.GoodClassificationRelation;
-import com.youzhi.model.GoodClassificationRelationExample;
-import com.youzhi.model.GoodExample;
+import com.youzhi.model.*;
 import com.youzhi.service.GoodService;
 import com.youzhi.util.ExcelUtil;
+import com.youzhi.util.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -20,8 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,9 +43,14 @@ public class GoodServiceImpl implements GoodService {
     private GoodDao goodDao;
 
     @Override
-    public int addGood(GoodParam goodParam) {
+    public int add(GoodParam goodParam) {
+        Admin admin = SecurityUtils.getAdmin();
         Good good = new Good();
         BeanUtils.copyProperties(goodParam,good);
+        good.setCreateAdminId(admin.getId());
+        good.setCreateTime(new Date());
+        good.setUpdateAdminId(admin.getId());
+        good.setUpdateTime(new Date());
         good.setDeleteStatus(0);
         int count = goodMapper.insertSelective(good);
         goodParam.getClassificationList().stream().forEach(
@@ -60,16 +65,19 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public List<GoodResult> list(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum) {
+    public List<GoodVo> listPage(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum) {
         PageHelper.startPage(pageNum,pageSize);
-        return goodDao.getList(goodQueryParam);
+        return goodDao.list(goodQueryParam);
     }
 
     @Override
-    public int updateGood(Integer id, GoodParam goodParam) {
+    public int update(Integer id, GoodParam goodParam) {
+        Admin admin = SecurityUtils.getAdmin();
         Good good = new Good();
         BeanUtils.copyProperties(goodParam,good);
         good.setId(id);
+        good.setUpdateAdminId(admin.getId());
+        good.setUpdateTime(new Date());
         //更新类别
         GoodClassificationRelationExample goodClassificationRelationExample = new GoodClassificationRelationExample();
         goodClassificationRelationExample.createCriteria().andGoodIdEqualTo(id);
@@ -87,12 +95,13 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public int deleteGood(Integer id) {
+    public int delete(Integer id) {
         return goodMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public int importGoods(MultipartFile file) {
+        Admin admin = SecurityUtils.getAdmin();
         int count = 0;
         try{
             List<Good> goodList = new ArrayList<>();
@@ -114,11 +123,15 @@ public class GoodServiceImpl implements GoodService {
                         .setUntowardEffect(strings[12])
                         .setTaboo(strings[13])
                         .setStatus(Integer.parseInt(strings[14]))
+                        .setCreateAdminId(admin.getId())
+                        .setCreateTime(new Date())
+                        .setUpdateAdminId(admin.getId())
+                        .setUpdateTime(new Date())
                         .setDeleteStatus(0);
                 goodList.add(good);
             }
             count = goodDao.addBatch(goodList);
-        }catch (Exception e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return count;

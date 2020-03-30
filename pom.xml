@@ -13,7 +13,6 @@
     <modules>
         <module>micro-mall-mbg</module>
         <module>micro-mall-admin</module>
-        <module>micro-mall-common</module>
     </modules>
 
 </project>

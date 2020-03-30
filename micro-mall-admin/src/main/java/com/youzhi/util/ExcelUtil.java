@@ -35,7 +35,7 @@ public class ExcelUtil {
      * @return
      * @throws Exception
      */
-    public static List<String[]> readExcel(MultipartFile file, int startRow, int startCell)throws Exception{
+    public static List<String[]> readExcel(MultipartFile file, int startRow, int startCell) throws IOException {
         checkFile(file);
         String fileName = file.getOriginalFilename();
         Workbook workbook = getWorkBook(file,fileName);
@@ -72,7 +72,7 @@ public class ExcelUtil {
      * @param file
      * @throws Exception
      */
-    private static void checkFile(MultipartFile file)throws Exception{
+    private static void checkFile(MultipartFile file) throws IOException {
         if (Objects.isNull(file))
             throw new FileNotFoundException("上传文件是空");
         String fileName = file.getOriginalFilename();

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -51,7 +51,14 @@ public class AccountRecord implements Serializable {
      *
      * @mbggenerated
      */
-    private String typename;
+    private String typeName;
+
+    /**
+     * 用户id
+     *
+     * @mbggenerated
+     */
+    private Integer userId;
 
     private static final long serialVersionUID = 1L;
 
@@ -66,7 +73,8 @@ public class AccountRecord implements Serializable {
         sb.append(", type=").append(type);
         sb.append(", createTime=").append(createTime);
         sb.append(", money=").append(money);
-        sb.append(", typename=").append(typename);
+        sb.append(", typeName=").append(typeName);
+        sb.append(", userId=").append(userId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

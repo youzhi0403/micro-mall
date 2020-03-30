@@ -2,11 +2,12 @@ package com.youzhi.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -39,6 +40,20 @@ public class Shopcart implements Serializable {
      */
     private BigDecimal totalPrice;
 
+    /**
+     * 创建时间
+     *
+     * @mbggenerated
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     *
+     * @mbggenerated
+     */
+    private Date updateTime;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -51,6 +66,8 @@ public class Shopcart implements Serializable {
         sb.append(", userId=").append(userId);
         sb.append(", totalNum=").append(totalNum);
         sb.append(", totalPrice=").append(totalPrice);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

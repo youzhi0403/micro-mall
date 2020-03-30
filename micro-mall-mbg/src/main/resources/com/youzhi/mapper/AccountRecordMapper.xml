@@ -7,7 +7,8 @@
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="money" jdbcType="INTEGER" property="money" />
-    <result column="typeName" jdbcType="VARCHAR" property="typename" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, number, type, create_time, money, typeName
+    id, number, type, create_time, money, type_name, user_id
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.AccountRecordExample" resultMap="BaseResultMap">
     select
@@ -105,9 +106,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into account_record (number, type, create_time, 
-      money, typeName)
+      money, type_name, user_id
+      )
     values (#{number,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{money,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR})
+      #{money,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.AccountRecord">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -127,8 +130,11 @@
       <if test="money != null">
         money,
       </if>
-      <if test="typename != null">
-        typeName,
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="userId != null">
+        user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -144,8 +150,11 @@
       <if test="money != null">
         #{money,jdbcType=INTEGER},
       </if>
-      <if test="typename != null">
-        #{typename,jdbcType=VARCHAR},
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -173,8 +182,11 @@
       <if test="record.money != null">
         money = #{record.money,jdbcType=INTEGER},
       </if>
-      <if test="record.typename != null">
-        typeName = #{record.typename,jdbcType=VARCHAR},
+      <if test="record.typeName != null">
+        type_name = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -188,7 +200,8 @@
       type = #{record.type,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       money = #{record.money,jdbcType=INTEGER},
-      typeName = #{record.typename,jdbcType=VARCHAR}
+      type_name = #{record.typeName,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -208,8 +221,11 @@
       <if test="money != null">
         money = #{money,jdbcType=INTEGER},
       </if>
-      <if test="typename != null">
-        typeName = #{typename,jdbcType=VARCHAR},
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -220,7 +236,8 @@
       type = #{type,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       money = #{money,jdbcType=INTEGER},
-      typeName = #{typename,jdbcType=VARCHAR}
+      type_name = #{typeName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

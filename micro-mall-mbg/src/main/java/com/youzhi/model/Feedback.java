@@ -1,11 +1,12 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -38,6 +39,13 @@ public class Feedback implements Serializable {
      */
     private Integer userId;
 
+    /**
+     * 反馈时间
+     *
+     * @mbggenerated
+     */
+    private Date createTime;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -50,6 +58,7 @@ public class Feedback implements Serializable {
         sb.append(", message=").append(message);
         sb.append(", imgs=").append(imgs);
         sb.append(", userId=").append(userId);
+        sb.append(", createTime=").append(createTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -47,11 +47,11 @@ public class NotificationOrder implements Serializable {
     private Date createTime;
 
     /**
-     * 创建用户id
+     * 用户id
      *
      * @mbggenerated
      */
-    private Integer createUserId;
+    private Integer userId;
 
     /**
      * 订单id
@@ -73,7 +73,7 @@ public class NotificationOrder implements Serializable {
         sb.append(", content=").append(content);
         sb.append(", img=").append(img);
         sb.append(", createTime=").append(createTime);
-        sb.append(", createUserId=").append(createUserId);
+        sb.append(", userId=").append(userId);
         sb.append(", orderId=").append(orderId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

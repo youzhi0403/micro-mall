@@ -1,11 +1,12 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -45,6 +46,13 @@ public class Logistics implements Serializable {
      */
     private Integer orderId;
 
+    /**
+     * 创建时间
+     *
+     * @mbggenerated
+     */
+    private Date createTime;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -58,6 +66,7 @@ public class Logistics implements Serializable {
         sb.append(", trackingNumber=").append(trackingNumber);
         sb.append(", status=").append(status);
         sb.append(", orderId=").append(orderId);
+        sb.append(", createTime=").append(createTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

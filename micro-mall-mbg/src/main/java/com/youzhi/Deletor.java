@@ -9,9 +9,9 @@ import java.io.File;
  */
 public class Deletor {
     public static void main(String[] args) {
-        File directory1 = new File("E:\\application\\idea_workspace\\micro-mall\\micro-mall-mbg\\src\\main\\java\\com\\youzhi\\model");
-        File directory2 = new File("E:\\application\\idea_workspace\\micro-mall\\micro-mall-mbg\\src\\main\\java\\com\\youzhi\\mapper");
-        File directory3 = new File("E:\\application\\idea_workspace\\micro-mall\\micro-mall-mbg\\src\\main\\resources\\com\\youzhi\\mapper");
+        File directory1 = new File("D:\\application\\idea_workspace\\micro-mall\\micro-mall-mbg\\src\\main\\java\\com\\youzhi\\model");
+        File directory2 = new File("D:\\application\\idea_workspace\\micro-mall\\micro-mall-mbg\\src\\main\\java\\com\\youzhi\\mapper");
+        File directory3 = new File("D:\\application\\idea_workspace\\micro-mall\\micro-mall-mbg\\src\\main\\resources\\com\\youzhi\\mapper");
         delete(directory1);
         delete(directory2);
         delete(directory3);

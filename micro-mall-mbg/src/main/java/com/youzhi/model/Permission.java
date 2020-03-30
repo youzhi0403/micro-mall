@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -51,7 +51,21 @@ public class Permission implements Serializable {
      *
      * @mbggenerated
      */
-    private Integer createUserId;
+    private Integer createAdminId;
+
+    /**
+     * 更新时间
+     *
+     * @mbggenerated
+     */
+    private Date updateTime;
+
+    /**
+     * 更新人id
+     *
+     * @mbggenerated
+     */
+    private Integer updateAdminId;
 
     /**
      * 所处层级
@@ -108,7 +122,9 @@ public class Permission implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", description=").append(description);
         sb.append(", createTime=").append(createTime);
-        sb.append(", createUserId=").append(createUserId);
+        sb.append(", createAdminId=").append(createAdminId);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", updateAdminId=").append(updateAdminId);
         sb.append(", level=").append(level);
         sb.append(", type=").append(type);
         sb.append(", value=").append(value);

@@ -7,7 +7,9 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_admin_id" jdbcType="INTEGER" property="updateAdminId" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="value" jdbcType="VARCHAR" property="value" />
@@ -74,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, parent_id, name, description, create_time, create_user_id, level, type, value, 
-    icon, uri, sort
+    id, parent_id, name, description, create_time, create_admin_id, update_time, update_admin_id, 
+    level, type, value, icon, uri, sort
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.PermissionExample" resultMap="BaseResultMap">
     select
@@ -112,13 +114,15 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into permission (parent_id, name, description, 
-      create_time, create_user_id, level, 
-      type, value, icon, 
-      uri, sort)
+      create_time, create_admin_id, update_time, 
+      update_admin_id, level, type, 
+      value, icon, uri, sort
+      )
     values (#{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{uri,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER})
+      #{createTime,jdbcType=TIMESTAMP}, #{createAdminId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateAdminId,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{value,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{uri,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.Permission">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -138,8 +142,14 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="createUserId != null">
-        create_user_id,
+      <if test="createAdminId != null">
+        create_admin_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id,
       </if>
       <if test="level != null">
         level,
@@ -173,8 +183,14 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUserId != null">
-        #{createUserId,jdbcType=INTEGER},
+      <if test="createAdminId != null">
+        #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        #{updateAdminId,jdbcType=INTEGER},
       </if>
       <if test="level != null">
         #{level,jdbcType=INTEGER},
@@ -220,8 +236,14 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUserId != null">
-        create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      <if test="record.createAdminId != null">
+        create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateAdminId != null">
+        update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
       </if>
       <if test="record.level != null">
         level = #{record.level,jdbcType=INTEGER},
@@ -253,7 +275,9 @@
       name = #{record.name,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
       level = #{record.level,jdbcType=INTEGER},
       type = #{record.type,jdbcType=INTEGER},
       value = #{record.value,jdbcType=VARCHAR},
@@ -279,8 +303,14 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUserId != null">
-        create_user_id = #{createUserId,jdbcType=INTEGER},
+      <if test="createAdminId != null">
+        create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id = #{updateAdminId,jdbcType=INTEGER},
       </if>
       <if test="level != null">
         level = #{level,jdbcType=INTEGER},
@@ -309,7 +339,9 @@
       name = #{name,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=INTEGER},
+      create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_admin_id = #{updateAdminId,jdbcType=INTEGER},
       level = #{level,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},
       value = #{value,jdbcType=VARCHAR},

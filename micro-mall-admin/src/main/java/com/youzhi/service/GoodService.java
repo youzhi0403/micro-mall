@@ -2,8 +2,7 @@ package com.youzhi.service;
 
 import com.youzhi.dto.GoodParam;
 import com.youzhi.dto.GoodQueryParam;
-import com.youzhi.dto.GoodResult;
-import com.youzhi.model.Good;
+import com.youzhi.dto.GoodVo;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +23,7 @@ public interface GoodService {
      * @return
      */
     @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
-    int addGood(GoodParam goodParam);
+    int add(GoodParam goodParam);
 
     /**
      * 分页查询商品
@@ -33,7 +32,7 @@ public interface GoodService {
      * @param pageNum
      * @return
      */
-    List<GoodResult> list(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum);
+    List<GoodVo> listPage(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum);
 
     /**
      * 更新商品
@@ -42,7 +41,7 @@ public interface GoodService {
      * @return
      */
     @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
-    int updateGood(Integer id, GoodParam goodParam);
+    int update(Integer id, GoodParam goodParam);
 
 
     /**
@@ -50,7 +49,7 @@ public interface GoodService {
      * @param id
      * @return
      */
-    int deleteGood(Integer id);
+    int delete(Integer id);
 
     /**
      * 批量导入商品

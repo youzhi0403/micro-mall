@@ -11,6 +11,6 @@ import java.util.List;
  * @date 2020/1/18 17:23
  */
 @Data
-public class GoodResult extends Good {
+public class GoodVo extends Good {
     List<Classification> classificationList;
 }

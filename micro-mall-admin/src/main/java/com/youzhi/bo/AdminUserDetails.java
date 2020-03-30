@@ -2,6 +2,7 @@ package com.youzhi.bo;
 
 import com.youzhi.model.Admin;
 import com.youzhi.model.Permission;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
  * @date 2020/1/3 13:04
  * spring security需要的用户详情
  */
+@Data
 public class AdminUserDetails implements UserDetails {
     private Admin admin;
     private List<Permission> permissionList;

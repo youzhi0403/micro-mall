@@ -12,6 +12,6 @@ import java.util.List;
  * @date 2020/1/21 9:40
  */
 @Data
-public class AdminResult extends Admin {
+public class AdminVo extends Admin {
     List<Role> roleList;
 }

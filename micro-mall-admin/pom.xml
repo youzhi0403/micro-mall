@@ -5,7 +5,7 @@
 
     <groupId>com.youzhi</groupId>
     <artifactId>micro-mall-admin</artifactId>
-    <version>1.0</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>micro-mall-admin</name>
@@ -121,6 +121,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>micro_mall</finalName>
     </build>
 
 </project>

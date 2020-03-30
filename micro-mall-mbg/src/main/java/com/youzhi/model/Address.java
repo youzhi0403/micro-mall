@@ -1,11 +1,12 @@
 package com.youzhi.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -45,6 +46,27 @@ public class Address implements Serializable {
      */
     private Integer isDefault;
 
+    /**
+     * 用户id
+     *
+     * @mbggenerated
+     */
+    private Integer userId;
+
+    /**
+     * 创建时间
+     *
+     * @mbggenerated
+     */
+    private Date createTime;
+
+    /**
+     * 修改时间
+     *
+     * @mbggenerated
+     */
+    private Date updateTime;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -58,6 +80,9 @@ public class Address implements Serializable {
         sb.append(", telephone=").append(telephone);
         sb.append(", addressInfo=").append(addressInfo);
         sb.append(", isDefault=").append(isDefault);
+        sb.append(", userId=").append(userId);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

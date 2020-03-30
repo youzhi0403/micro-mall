@@ -21,8 +21,8 @@
     <result column="inventory" jdbcType="INTEGER" property="inventory" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
-    <result column="update_user_id" jdbcType="INTEGER" property="updateUserId" />
+    <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
+    <result column="update_admin_id" jdbcType="INTEGER" property="updateAdminId" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="delete_status" jdbcType="INTEGER" property="deleteStatus" />
   </resultMap>
@@ -87,7 +87,7 @@
   <sql id="Base_Column_List">
     id, name, full_name, imgs, price, sales, good_function, manufacturer, good_number, 
     good_type, approval_number, specification, good_usage, common_name, untoward_effect, 
-    taboo, inventory, create_time, update_time, create_user_id, update_user_id, status, 
+    taboo, inventory, create_time, update_time, create_admin_id, update_admin_id, status, 
     delete_status
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.GoodExample" resultMap="BaseResultMap">
@@ -130,7 +130,7 @@
       approval_number, specification, good_usage, 
       common_name, untoward_effect, taboo, 
       inventory, create_time, update_time, 
-      create_user_id, update_user_id, status, 
+      create_admin_id, update_admin_id, status, 
       delete_status)
     values (#{name,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, 
       #{price,jdbcType=DECIMAL}, #{sales,jdbcType=INTEGER}, #{goodFunction,jdbcType=VARCHAR}, 
@@ -138,7 +138,7 @@
       #{approvalNumber,jdbcType=VARCHAR}, #{specification,jdbcType=VARCHAR}, #{goodUsage,jdbcType=VARCHAR}, 
       #{commonName,jdbcType=VARCHAR}, #{untowardEffect,jdbcType=VARCHAR}, #{taboo,jdbcType=VARCHAR}, 
       #{inventory,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUserId,jdbcType=INTEGER}, #{updateUserId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createAdminId,jdbcType=INTEGER}, #{updateAdminId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
       #{deleteStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.Good">
@@ -201,11 +201,11 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="createUserId != null">
-        create_user_id,
+      <if test="createAdminId != null">
+        create_admin_id,
       </if>
-      <if test="updateUserId != null">
-        update_user_id,
+      <if test="updateAdminId != null">
+        update_admin_id,
       </if>
       <if test="status != null">
         status,
@@ -269,11 +269,11 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUserId != null">
-        #{createUserId,jdbcType=INTEGER},
+      <if test="createAdminId != null">
+        #{createAdminId,jdbcType=INTEGER},
       </if>
-      <if test="updateUserId != null">
-        #{updateUserId,jdbcType=INTEGER},
+      <if test="updateAdminId != null">
+        #{updateAdminId,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -349,11 +349,11 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUserId != null">
-        create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      <if test="record.createAdminId != null">
+        create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
       </if>
-      <if test="record.updateUserId != null">
-        update_user_id = #{record.updateUserId,jdbcType=INTEGER},
+      <if test="record.updateAdminId != null">
+        update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -387,8 +387,8 @@
       inventory = #{record.inventory,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      create_user_id = #{record.createUserId,jdbcType=INTEGER},
-      update_user_id = #{record.updateUserId,jdbcType=INTEGER},
+      create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
+      update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
       status = #{record.status,jdbcType=INTEGER},
       delete_status = #{record.deleteStatus,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -452,11 +452,11 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUserId != null">
-        create_user_id = #{createUserId,jdbcType=INTEGER},
+      <if test="createAdminId != null">
+        create_admin_id = #{createAdminId,jdbcType=INTEGER},
       </if>
-      <if test="updateUserId != null">
-        update_user_id = #{updateUserId,jdbcType=INTEGER},
+      <if test="updateAdminId != null">
+        update_admin_id = #{updateAdminId,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -487,8 +487,8 @@
       inventory = #{inventory,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=INTEGER},
-      update_user_id = #{updateUserId,jdbcType=INTEGER},
+      create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      update_admin_id = #{updateAdminId,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       delete_status = #{deleteStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

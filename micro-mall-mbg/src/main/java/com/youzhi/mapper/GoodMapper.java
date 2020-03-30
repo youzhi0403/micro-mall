@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by Mybatis Generator 2020/01/21
+* Created by Mybatis Generator 2020/03/30
 */
 public interface GoodMapper {
     int countByExample(GoodExample example);

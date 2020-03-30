@@ -3,7 +3,7 @@ package com.youzhi.service.impl;
 import com.youzhi.dao.AdminDao;
 import com.youzhi.dao.AdminRoleRelationDao;
 import com.youzhi.dto.AdminParam;
-import com.youzhi.dto.AdminResult;
+import com.youzhi.dto.AdminVo;
 import com.youzhi.mapper.AdminLoginLogMapper;
 import com.youzhi.mapper.AdminMapper;
 import com.youzhi.model.*;
@@ -22,14 +22,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
-import java.util.prefs.BackingStoreException;
 
 /**
  * @author cwj
@@ -56,8 +54,8 @@ public class AdminServiceImpl implements AdminService {
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
-    public AdminResult getAdminByUsername(String username) {
-        List<AdminResult> adminList = adminDao.getAdminList(username);
+    public AdminVo getAdminByUsername(String username) {
+        List<AdminVo> adminList = adminDao.getAdminList(username);
         if(adminList != null && adminList.size() > 0){
             return adminList.get(0);
         }

@@ -2,11 +2,12 @@ package com.youzhi.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -32,6 +33,34 @@ public class Combination implements Serializable {
      */
     private BigDecimal price;
 
+    /**
+     * 创建时间
+     *
+     * @mbggenerated
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     *
+     * @mbggenerated
+     */
+    private Date updateTime;
+
+    /**
+     * 创建人id
+     *
+     * @mbggenerated
+     */
+    private Integer createAdminId;
+
+    /**
+     * 更新人id
+     *
+     * @mbggenerated
+     */
+    private Integer updateAdminId;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -43,6 +72,10 @@ public class Combination implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", price=").append(price);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", createAdminId=").append(createAdminId);
+        sb.append(", updateAdminId=").append(updateAdminId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

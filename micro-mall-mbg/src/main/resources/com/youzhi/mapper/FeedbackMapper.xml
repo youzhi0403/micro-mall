@@ -6,6 +6,7 @@
     <result column="message" jdbcType="VARCHAR" property="message" />
     <result column="imgs" jdbcType="VARCHAR" property="imgs" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, message, imgs, user_id
+    id, message, imgs, user_id, create_time
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.FeedbackExample" resultMap="BaseResultMap">
     select
@@ -102,10 +103,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into feedback (message, imgs, user_id
-      )
-    values (#{message,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
-      )
+    insert into feedback (message, imgs, user_id, 
+      create_time)
+    values (#{message,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.Feedback">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -122,6 +123,9 @@
       <if test="userId != null">
         user_id,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="message != null">
@@ -132,6 +136,9 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set id = #{record.id,jdbcType=INTEGER},
       message = #{record.message,jdbcType=VARCHAR},
       imgs = #{record.imgs,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER}
+      user_id = #{record.userId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -190,7 +204,8 @@
     update feedback
     set message = #{message,jdbcType=VARCHAR},
       imgs = #{imgs,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

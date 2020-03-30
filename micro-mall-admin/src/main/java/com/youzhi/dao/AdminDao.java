@@ -1,6 +1,6 @@
 package com.youzhi.dao;
 
-import com.youzhi.dto.AdminResult;
+import com.youzhi.dto.AdminVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,5 +10,5 @@ import java.util.List;
  * @date 2020/1/21 9:45
  */
 public interface AdminDao {
-    List<AdminResult> getAdminList(@Param("username") String username);
+    List<AdminVo> getAdminList(@Param("username") String username);
 }

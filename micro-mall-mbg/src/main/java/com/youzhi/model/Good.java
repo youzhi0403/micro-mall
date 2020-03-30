@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/01/21
+ created by mybatis generator 2020/03/30
 */
 @Data
 @Accessors(chain = true)
@@ -150,14 +150,14 @@ public class Good implements Serializable {
      *
      * @mbggenerated
      */
-    private Integer createUserId;
+    private Integer createAdminId;
 
     /**
      * 更新人id
      *
      * @mbggenerated
      */
-    private Integer updateUserId;
+    private Integer updateAdminId;
 
     /**
      * 商品状态 1-正常 2-无货 3-下架
@@ -200,8 +200,8 @@ public class Good implements Serializable {
         sb.append(", inventory=").append(inventory);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
-        sb.append(", createUserId=").append(createUserId);
-        sb.append(", updateUserId=").append(updateUserId);
+        sb.append(", createAdminId=").append(createAdminId);
+        sb.append(", updateAdminId=").append(updateAdminId);
         sb.append(", status=").append(status);
         sb.append(", deleteStatus=").append(deleteStatus);
         sb.append(", serialVersionUID=").append(serialVersionUID);

@@ -7,7 +7,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="img" jdbcType="VARCHAR" property="img" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, content, img, create_time, create_user_id, order_id
+    id, title, content, img, create_time, user_id, order_id
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.NotificationOrderExample" resultMap="BaseResultMap">
     select
@@ -106,10 +106,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into notification_order (title, content, img, 
-      create_time, create_user_id, order_id
+      create_time, user_id, order_id
       )
     values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}
+      #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.NotificationOrder">
@@ -130,8 +130,8 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="createUserId != null">
-        create_user_id,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="orderId != null">
         order_id,
@@ -150,8 +150,8 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUserId != null">
-        #{createUserId,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="orderId != null">
         #{orderId,jdbcType=INTEGER},
@@ -182,8 +182,8 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUserId != null">
-        create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=INTEGER},
@@ -200,7 +200,7 @@
       content = #{record.content,jdbcType=VARCHAR},
       img = #{record.img,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       order_id = #{record.orderId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,8 +221,8 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUserId != null">
-        create_user_id = #{createUserId,jdbcType=INTEGER},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="orderId != null">
         order_id = #{orderId,jdbcType=INTEGER},
@@ -236,7 +236,7 @@
       content = #{content,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
       order_id = #{orderId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

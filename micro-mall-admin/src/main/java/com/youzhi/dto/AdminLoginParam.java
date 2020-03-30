@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 
+
 /**
  * @author cwj
  * @date 2020/1/6 10:28
@@ -16,11 +17,11 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminLoginParam {
-    @ApiModelProperty(value = "用户名", required = true)
+    @ApiModelProperty(value = "用户名")
     @NotEmpty(message = "用户名不为空")
     private String username;
 
-    @ApiModelProperty(value = "密码", required = true)
+    @ApiModelProperty(value = "密码")
     @NotEmpty(message = "密码不能为空")
     private String password;
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youzhi.dao.GoodDao">
-    <resultMap id="goodResultResultMap" type="com.youzhi.dto.GoodResult" extends="com.youzhi.mapper.GoodMapper.BaseResultMap">
+    <resultMap id="goodResultResultMap" type="com.youzhi.dto.GoodVo" extends="com.youzhi.mapper.GoodMapper.BaseResultMap">
         <collection property="classificationList" resultMap="com.youzhi.mapper.ClassificationMapper.BaseResultMap" columnPrefix="classification_">
         </collection>
     </resultMap>
 
-    <select id="getList" resultMap="goodResultResultMap">
+    <select id="list" resultMap="goodResultResultMap">
         select g.*,cla.*
         from
           good g
@@ -23,6 +23,7 @@
           <if test="queryParam.classificationId != null">
             and cla.id = #{queryParam.classificationId}
           </if>
+        order by g.create_time desc
     </select>
 
     <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
@@ -49,8 +50,8 @@
               #{item.inventory},
               #{item.createTime},
               #{item.updateTime},
-              #{item.createUserId},
-              #{item.updateUserId},
+              #{item.createAdminId},
+              #{item.updateAdminId},
               #{item.status},
               #{item.deleteStatus}
             )

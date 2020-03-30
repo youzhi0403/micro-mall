@@ -10,6 +10,9 @@
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="note" jdbcType="VARCHAR" property="note" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
+    <result column="udpate_time" jdbcType="TIMESTAMP" property="udpateTime" />
+    <result column="update_admin_id" jdbcType="INTEGER" property="updateAdminId" />
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
@@ -72,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, icon, email, nick_name, note, create_time, login_time, status
+    id, username, password, icon, email, nick_name, note, create_time, create_admin_id, 
+    udpate_time, update_admin_id, login_time, status
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.AdminExample" resultMap="BaseResultMap">
     select
@@ -110,11 +114,13 @@
     </selectKey>
     insert into admin (username, password, icon, 
       email, nick_name, note, 
-      create_time, login_time, status
+      create_time, create_admin_id, udpate_time, 
+      update_admin_id, login_time, status
       )
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      #{createTime,jdbcType=TIMESTAMP}, #{createAdminId,jdbcType=INTEGER}, #{udpateTime,jdbcType=TIMESTAMP}, 
+      #{updateAdminId,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.Admin">
@@ -144,6 +150,15 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="createAdminId != null">
+        create_admin_id,
+      </if>
+      <if test="udpateTime != null">
+        udpate_time,
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id,
+      </if>
       <if test="loginTime != null">
         login_time,
       </if>
@@ -172,6 +187,15 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createAdminId != null">
+        #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="udpateTime != null">
+        #{udpateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        #{updateAdminId,jdbcType=INTEGER},
       </if>
       <if test="loginTime != null">
         #{loginTime,jdbcType=TIMESTAMP},
@@ -214,6 +238,15 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.createAdminId != null">
+        create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.udpateTime != null">
+        udpate_time = #{record.udpateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateAdminId != null">
+        update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
+      </if>
       <if test="record.loginTime != null">
         login_time = #{record.loginTime,jdbcType=TIMESTAMP},
       </if>
@@ -235,6 +268,9 @@
       nick_name = #{record.nickName,jdbcType=VARCHAR},
       note = #{record.note,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
+      udpate_time = #{record.udpateTime,jdbcType=TIMESTAMP},
+      update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
       login_time = #{record.loginTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -265,6 +301,15 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="createAdminId != null">
+        create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      </if>
+      <if test="udpateTime != null">
+        udpate_time = #{udpateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAdminId != null">
+        update_admin_id = #{updateAdminId,jdbcType=INTEGER},
+      </if>
       <if test="loginTime != null">
         login_time = #{loginTime,jdbcType=TIMESTAMP},
       </if>
@@ -283,6 +328,9 @@
       nick_name = #{nickName,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_admin_id = #{createAdminId,jdbcType=INTEGER},
+      udpate_time = #{udpateTime,jdbcType=TIMESTAMP},
+      update_admin_id = #{updateAdminId,jdbcType=INTEGER},
       login_time = #{loginTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

@@ -44,12 +44,12 @@ public class GoodServiceImpl implements GoodService {
 
     @Override
     public int add(GoodParam goodParam) {
-        Admin admin = SecurityUtils.getAdmin();
+        Admin currentAdmin = SecurityUtils.getAdmin();
         Good good = new Good();
         BeanUtils.copyProperties(goodParam,good);
-        good.setCreateAdminId(admin.getId());
+        good.setCreateAdminId(currentAdmin.getId());
         good.setCreateTime(new Date());
-        good.setUpdateAdminId(admin.getId());
+        good.setUpdateAdminId(currentAdmin.getId());
         good.setUpdateTime(new Date());
         good.setDeleteStatus(0);
         int count = goodMapper.insertSelective(good);
@@ -72,11 +72,11 @@ public class GoodServiceImpl implements GoodService {
 
     @Override
     public int update(Integer id, GoodParam goodParam) {
-        Admin admin = SecurityUtils.getAdmin();
+        Admin currentAdmin = SecurityUtils.getAdmin();
         Good good = new Good();
         BeanUtils.copyProperties(goodParam,good);
         good.setId(id);
-        good.setUpdateAdminId(admin.getId());
+        good.setUpdateAdminId(currentAdmin.getId());
         good.setUpdateTime(new Date());
         //更新类别
         GoodClassificationRelationExample goodClassificationRelationExample = new GoodClassificationRelationExample();

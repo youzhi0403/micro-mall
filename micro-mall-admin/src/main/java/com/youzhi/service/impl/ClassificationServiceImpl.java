@@ -71,10 +71,10 @@ public class ClassificationServiceImpl implements ClassificationService {
     }
 
     public Classification setClassificationProperty(Classification classification){
-        Admin admin = SecurityUtils.getAdmin();
-        classification.setCreateAdminId(admin.getId());
+        Admin currentAdmin = SecurityUtils.getAdmin();
+        classification.setCreateAdminId(currentAdmin.getId());
         classification.setCreateTime(new Date());
-        classification.setUpdateAdminId(admin.getId());
+        classification.setUpdateAdminId(currentAdmin.getId());
         classification.setUpdateTime(new Date());
         ClassificationExample classificationExample = new ClassificationExample();
         classificationExample.createCriteria().andIdEqualTo(classification.getParentId());

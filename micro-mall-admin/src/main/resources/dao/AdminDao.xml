@@ -11,7 +11,7 @@
             r.name as role_name,
             r.description as role_description,
             r.create_time as role_create_time,
-            r.create_user_id as role_create_user_id,
+            r.create_admin_id as role_create_admin_id,
             r.value as role_value
         from
             admin a

@@ -38,7 +38,7 @@ public class GoodController {
     private GoodService goodService;
 
     @ApiOperation("分页查询商品")
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/listPage",method = RequestMethod.GET)
     @ResponseBody
     @PreAuthorize("hasAuthority('good:read')")
     public Object listPage(GoodQueryParam goodQueryParam,

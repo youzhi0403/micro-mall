@@ -31,7 +31,7 @@ public class AddressController {
     private AddressService addressService;
 
     @ApiOperation("分页查询用户地址")
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @RequestMapping(value = "/listPage",method = RequestMethod.GET)
     @ResponseBody
     /*@PreAuthorize("hasAuthority(':read')")*/
     public Object listPage(AddressQueryParam queryParam,

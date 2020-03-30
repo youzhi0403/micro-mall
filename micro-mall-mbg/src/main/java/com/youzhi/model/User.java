@@ -74,6 +74,13 @@ public class User implements Serializable {
      */
     private Date createTime;
 
+    /**
+     * 0-未删除 1-删除
+     *
+     * @mbggenerated
+     */
+    private Integer deleteStatus;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -91,6 +98,7 @@ public class User implements Serializable {
         sb.append(", account=").append(account);
         sb.append(", balance=").append(balance);
         sb.append(", createTime=").append(createTime);
+        sb.append(", deleteStatus=").append(deleteStatus);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

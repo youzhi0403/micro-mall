@@ -68,13 +68,6 @@ public class Permission implements Serializable {
     private Integer updateAdminId;
 
     /**
-     * 所处层级
-     *
-     * @mbggenerated
-     */
-    private Integer level;
-
-    /**
      * 权限类型 1目录 2菜单 3功能
      *
      * @mbggenerated
@@ -125,7 +118,6 @@ public class Permission implements Serializable {
         sb.append(", createAdminId=").append(createAdminId);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", updateAdminId=").append(updateAdminId);
-        sb.append(", level=").append(level);
         sb.append(", type=").append(type);
         sb.append(", value=").append(value);
         sb.append(", icon=").append(icon);

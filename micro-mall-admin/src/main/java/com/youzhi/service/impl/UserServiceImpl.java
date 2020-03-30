@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(userParam,user);
         user.setBalance(0);
         user.setCreateTime(new Date());
-        user.setDeleteStatus(0);
+        user.setStatus(1);
         int count = userMapper.insertSelective(user);
         return count;
     }
@@ -75,13 +75,13 @@ public class UserServiceImpl implements UserService {
     public int forbidden(Integer id) {
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(id);
-        return userMapper.updateByExampleSelective(new User().setDeleteStatus(1),example);
+        return userMapper.updateByExampleSelective(new User().setStatus(0),example);
     }
 
     @Override
     public int launch(Integer id) {
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(id);
-        return userMapper.updateByExampleSelective(new User().setDeleteStatus(0),example);
+        return userMapper.updateByExampleSelective(new User().setStatus(1),example);
     }
 }

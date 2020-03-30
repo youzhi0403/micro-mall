@@ -9,7 +9,6 @@
     <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_admin_id" jdbcType="INTEGER" property="updateAdminId" />
-    <result column="value" jdbcType="VARCHAR" property="value" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,8 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, description, create_time, create_admin_id, update_time, update_admin_id, 
-    value
+    id, name, description, create_time, create_admin_id, update_time, update_admin_id
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.RoleExample" resultMap="BaseResultMap">
     select
@@ -108,11 +106,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into role (name, description, create_time, 
-      create_admin_id, update_time, update_admin_id, 
-      value)
+      create_admin_id, update_time, update_admin_id
+      )
     values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createAdminId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateAdminId,jdbcType=INTEGER}, 
-      #{value,jdbcType=VARCHAR})
+      #{createAdminId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateAdminId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.Role">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -138,9 +136,6 @@
       <if test="updateAdminId != null">
         update_admin_id,
       </if>
-      <if test="value != null">
-        value,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -160,9 +155,6 @@
       </if>
       <if test="updateAdminId != null">
         #{updateAdminId,jdbcType=INTEGER},
-      </if>
-      <if test="value != null">
-        #{value,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -196,9 +188,6 @@
       <if test="record.updateAdminId != null">
         update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
       </if>
-      <if test="record.value != null">
-        value = #{record.value,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,8 +201,7 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      update_admin_id = #{record.updateAdminId,jdbcType=INTEGER},
-      value = #{record.value,jdbcType=VARCHAR}
+      update_admin_id = #{record.updateAdminId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -239,9 +227,6 @@
       <if test="updateAdminId != null">
         update_admin_id = #{updateAdminId,jdbcType=INTEGER},
       </if>
-      <if test="value != null">
-        value = #{value,jdbcType=VARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -252,8 +237,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_admin_id = #{createAdminId,jdbcType=INTEGER},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      update_admin_id = #{updateAdminId,jdbcType=INTEGER},
-      value = #{value,jdbcType=VARCHAR}
+      update_admin_id = #{updateAdminId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -2,12 +2,15 @@ package com.youzhi.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.youzhi.dao.AdminDao;
+import com.youzhi.dao.AdminPermissionRelationDao;
 import com.youzhi.dao.AdminRoleRelationDao;
 import com.youzhi.dto.AdminParam;
 import com.youzhi.dto.AdminQueryParam;
 import com.youzhi.dto.AdminVo;
 import com.youzhi.mapper.AdminLoginLogMapper;
 import com.youzhi.mapper.AdminMapper;
+import com.youzhi.mapper.AdminPermissionRelationMapper;
+import com.youzhi.mapper.AdminRoleRelationMapper;
 import com.youzhi.model.*;
 import com.youzhi.service.AdminService;
 import com.youzhi.util.JwtTokenUtil;
@@ -25,12 +28,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author cwj
@@ -49,6 +55,12 @@ public class AdminServiceImpl implements AdminService {
     private AdminRoleRelationDao adminRoleRelationDao;
     @Autowired
     private AdminDao adminDao;
+    @Autowired
+    private AdminRoleRelationMapper adminRoleRelationMapper;
+    @Autowired
+    private AdminPermissionRelationMapper adminPermissionRelationMapper;
+    @Autowired
+    private AdminPermissionRelationDao adminPermissionRelationDao;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
     @Autowired
@@ -135,6 +147,79 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int delete(Integer id) {
         return adminMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int forbidden(Integer id) {
+        return adminMapper.updateByPrimaryKeySelective(new Admin().setId(id).setStatus(1));
+    }
+
+    @Override
+    public int launch(Integer id) {
+        return adminMapper.updateByPrimaryKeySelective(new Admin().setId(id).setStatus(0));
+    }
+
+    @Override
+    public int updateRole(Integer adminId, List<Integer> roleIds) {
+        int count = roleIds == null ? 0 : roleIds.size();
+        //先删除原来的关系
+        AdminRoleRelationExample adminRoleRelationExample = new AdminRoleRelationExample();
+        adminRoleRelationExample.createCriteria().andAdminIdEqualTo(adminId);
+        adminRoleRelationMapper.deleteByExample(adminRoleRelationExample);
+        //建立新关系
+        if (!CollectionUtils.isEmpty(roleIds)) {
+            List<AdminRoleRelation> list = new ArrayList<>();
+            for (Integer roleId : roleIds) {
+                AdminRoleRelation roleRelation = new AdminRoleRelation();
+                roleRelation.setAdminId(adminId);
+                roleRelation.setRoleId(roleId);
+                list.add(roleRelation);
+            }
+            adminRoleRelationDao.addBatch(list);
+        }
+        return count;
+    }
+
+    @Override
+    public List<Role> getRoleList(Integer adminId) {
+        return adminRoleRelationDao.getRoleList(adminId);
+    }
+
+    @Override
+    public int updatePermission(Integer adminId, List<Integer> permissionIds) {
+        //删除原所有权限关系
+        AdminPermissionRelationExample relationExample = new AdminPermissionRelationExample();
+        relationExample.createCriteria().andAdminIdEqualTo(adminId);
+        adminPermissionRelationMapper.deleteByExample(relationExample);
+        //获取用户所有角色权限
+        List<Permission> permissionList = adminRoleRelationDao.getRolePermissionList(adminId);
+        List<Integer> rolePermissionList = permissionList.stream().map(Permission::getId).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(permissionIds)) {
+            List<AdminPermissionRelation> relationList = new ArrayList<>();
+            //筛选出+权限
+            List<Integer> addPermissionIdList = permissionIds.stream().filter(permissionId -> !rolePermissionList.contains(permissionId)).collect(Collectors.toList());
+            //筛选出-权限
+            List<Integer> subPermissionIdList = rolePermissionList.stream().filter(permissionId -> !permissionIds.contains(permissionId)).collect(Collectors.toList());
+            //插入+-权限关系
+            relationList.addAll(convert(adminId,1,addPermissionIdList));
+            relationList.addAll(convert(adminId,-1,subPermissionIdList));
+            return adminPermissionRelationDao.addBatch(relationList);
+        }
+        return 0;
+    }
+
+    /**
+     * 将+-权限关系转化为对象
+     */
+    private List<AdminPermissionRelation> convert(Integer adminId,Integer type,List<Integer> permissionIdList) {
+        List<AdminPermissionRelation> relationList = permissionIdList.stream().map(permissionId -> {
+            AdminPermissionRelation relation = new AdminPermissionRelation();
+            relation.setAdminId(adminId);
+            relation.setType(type);
+            relation.setPermissionId(permissionId);
+            return relation;
+        }).collect(Collectors.toList());
+        return relationList;
     }
 
     /**

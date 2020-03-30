@@ -60,13 +60,6 @@ public class Role implements Serializable {
      */
     private Integer updateAdminId;
 
-    /**
-     * 角色值
-     *
-     * @mbggenerated
-     */
-    private String value;
-
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -82,7 +75,6 @@ public class Role implements Serializable {
         sb.append(", createAdminId=").append(createAdminId);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", updateAdminId=").append(updateAdminId);
-        sb.append(", value=").append(value);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

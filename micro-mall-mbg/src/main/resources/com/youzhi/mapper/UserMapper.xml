@@ -11,7 +11,7 @@
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="balance" jdbcType="INTEGER" property="balance" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="delete_status" jdbcType="INTEGER" property="deleteStatus" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, avatar, nickname, telephone, login_password, pay_password, account, balance, 
-    create_time, delete_status
+    create_time, status
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.UserExample" resultMap="BaseResultMap">
     select
@@ -111,11 +111,11 @@
     </selectKey>
     insert into user (avatar, nickname, telephone, 
       login_password, pay_password, account, 
-      balance, create_time, delete_status
+      balance, create_time, status
       )
     values (#{avatar,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{loginPassword,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{deleteStatus,jdbcType=INTEGER}
+      #{balance,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.youzhi.model.User">
@@ -148,8 +148,8 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="deleteStatus != null">
-        delete_status,
+      <if test="status != null">
+        status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -177,8 +177,8 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="deleteStatus != null">
-        #{deleteStatus,jdbcType=INTEGER},
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -218,8 +218,8 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.deleteStatus != null">
-        delete_status = #{record.deleteStatus,jdbcType=INTEGER},
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -237,7 +237,7 @@
       account = #{record.account,jdbcType=VARCHAR},
       balance = #{record.balance,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      delete_status = #{record.deleteStatus,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -269,8 +269,8 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="deleteStatus != null">
-        delete_status = #{deleteStatus,jdbcType=INTEGER},
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -285,7 +285,7 @@
       account = #{account,jdbcType=VARCHAR},
       balance = #{balance,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      delete_status = #{deleteStatus,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

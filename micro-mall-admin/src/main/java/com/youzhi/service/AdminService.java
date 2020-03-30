@@ -5,6 +5,7 @@ import com.youzhi.dto.AdminQueryParam;
 import com.youzhi.dto.AdminVo;
 import com.youzhi.model.Admin;
 import com.youzhi.model.Permission;
+import com.youzhi.model.Role;
 
 import java.util.List;
 
@@ -68,4 +69,41 @@ public interface AdminService {
      * @return
      */
     int delete(Integer id);
+
+    /**
+     * 禁用管理员
+     * @param id
+     * @return
+     */
+    int forbidden(Integer id);
+
+    /**
+     * 开启管理员
+     * @param id
+     * @return
+     */
+    int launch(Integer id);
+
+    /**
+     * 更新管理员角色
+     * @param adminId
+     * @param roleIds
+     * @return
+     */
+    int updateRole(Integer adminId, List<Integer> roleIds);
+
+    /**
+     * 获取角色列表
+     * @param adminId
+     * @return
+     */
+    List<Role> getRoleList(Integer adminId);
+
+    /**
+     * 更新用户权限+-
+     * @param adminId
+     * @param permissionIds
+     * @return
+     */
+    int updatePermission(Integer adminId, List<Integer> permissionIds);
 }

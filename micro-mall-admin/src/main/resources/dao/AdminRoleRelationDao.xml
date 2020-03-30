@@ -32,4 +32,20 @@
             apr.type = 1
             and apr.admin_id = #{adminId}
     </select>
+
+    <!--批量新增回写主键支持-->
+    <insert id="addBatch">
+        INSERT INTO admin_role_relation (role_id, admin_id) VALUES
+        <foreach collection="list" separator="," item="item" index="index">
+            (#{item.roleId},
+            #{item.adminId})
+        </foreach>
+    </insert>
+
+    <select id="getRoleList" resultMap="com.youzhi.mapper.RoleMapper.BaseResultMap">
+        select r.*
+        from admin_role_relation ar left join role r on ar.role_id = r.id
+        where ar.admin_id = #{adminId}
+    </select>
+
 </mapper>

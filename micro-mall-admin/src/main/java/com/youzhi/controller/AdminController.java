@@ -2,6 +2,8 @@ package com.youzhi.controller;
 
 import com.youzhi.dto.*;
 import com.youzhi.model.Admin;
+import com.youzhi.model.Permission;
+import com.youzhi.model.Role;
 import com.youzhi.service.AdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -125,5 +127,71 @@ public class AdminController {
             return new CommonResult().failed();
         }
     }
+
+    @ApiOperation("禁用管理员")
+    @RequestMapping(value = "/forbidden/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public Object forbidden(@PathVariable("id") Integer id){
+        int count = adminService.forbidden(id);
+        if(count == 1){
+            return new CommonResult().success(null);
+        }else{
+            return new CommonResult().failed();
+        }
+    }
+
+    @ApiOperation("启用管理员")
+    @RequestMapping(value = "/launch/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public Object launch(@PathVariable("id") Integer id){
+        int count = adminService.launch(id);
+        if(count == 1){
+            return new CommonResult().success(null);
+        }else{
+            return new CommonResult().failed();
+        }
+    }
+
+    @ApiOperation("给管理员分配角色")
+    @RequestMapping(value = "/role/update",method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateRole(@RequestParam("adminId") Integer adminId,
+                             @RequestParam("roleIds") List<Integer> roleIds){
+        int count = adminService.updateRole(adminId,roleIds);
+        if(count>=0){
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
+    @ApiOperation("获取指定管理员的角色")
+    @RequestMapping(value = "/role/{adminId}",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getRoleList(@PathVariable Integer adminId){
+        List<Role> roleList = adminService.getRoleList(adminId);
+        return new CommonResult().success(roleList);
+    }
+
+    @ApiOperation("给用户分配+-权限")
+    @RequestMapping(value = "/permission/update",method = RequestMethod.POST)
+    @ResponseBody
+    public Object updatePermission(@RequestParam Integer adminId,
+                                   @RequestParam("permissionIds") List<Integer> permissionIds){
+        int count = adminService.updatePermission(adminId,permissionIds);
+        if(count>0){
+            return new CommonResult().success(count);
+        }
+        return new CommonResult().failed();
+    }
+
+    @ApiOperation("获取用户所有权限（包括+-权限）")
+    @RequestMapping(value = "/permission/{adminId}",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getPermissionList(@PathVariable Integer adminId){
+        List<Permission> permissionList = adminService.getPermissionList(adminId);
+        return new CommonResult().success(permissionList);
+    }
+
+
 
 }

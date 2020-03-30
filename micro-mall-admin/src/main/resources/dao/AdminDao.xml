@@ -19,4 +19,27 @@
             left join role r on r.id = arr.role_id
         where a.username = #{username}
     </select>
+
+    <select id="list" resultMap="adminResultResultMap">
+        select a.*,
+        r.id as role_id,
+        r.name as role_name,
+        r.description as role_description,
+        r.create_time as role_create_time,
+        r.create_admin_id as role_create_admin_id,
+        r.value as role_value
+        from
+        admin a
+        left join admin_role_relation arr on arr.admin_id = a.id
+        left join role r on r.id = arr.role_id
+        where
+        1 = 1
+        <if test="queryParam.username != null">
+            and a.username = #{queryParam.username}
+        </if>
+        <if test="queryParam.nickname != null">
+            and a.nickname LIKE CONCAT('%',#{queryParam.nickname}, '%')
+        </if>
+        order by a.create_time desc
+    </select>
 </mapper>

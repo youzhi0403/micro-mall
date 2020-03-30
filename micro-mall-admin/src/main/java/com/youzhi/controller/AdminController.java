@@ -1,9 +1,6 @@
 package com.youzhi.controller;
 
-import com.youzhi.dto.AdminLoginParam;
-import com.youzhi.dto.AdminParam;
-import com.youzhi.dto.AdminVo;
-import com.youzhi.dto.CommonResult;
+import com.youzhi.dto.*;
 import com.youzhi.model.Admin;
 import com.youzhi.service.AdminService;
 import io.swagger.annotations.Api;
@@ -15,12 +12,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,15 +36,18 @@ public class AdminController {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
-    @ApiOperation(value = "用户注册")
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @ApiOperation(value = "用户添加")
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
-    public Object register(@Validated @RequestBody AdminParam adminParam,BindingResult result){
-        Admin admin = adminService.register(adminParam);
-        if(admin == null){
+    public Object add(@Validated @RequestBody AdminParam adminParam,BindingResult result){
+        int count = adminService.add(adminParam);
+        if(count == 1){
+            return new CommonResult().success(count);
+        }else if(count < 1){
+            return new CommonResult().validateFailed("已经存在用户名");
+        }else{
             return new CommonResult().failed();
         }
-        return new CommonResult().success(admin);
     }
 
     @ApiOperation(value = "登录后返回token")
@@ -84,6 +83,47 @@ public class AdminController {
     @ResponseBody
     public Object logout(){
         return new CommonResult().success(null);
+    }
+
+
+    @ApiOperation("分页查询后台管理员")
+    @RequestMapping(value = "/listPage",method = RequestMethod.GET)
+    @ResponseBody
+    /*@PreAuthorize("hasAuthority(':read')")*/
+    public Object listPage(AdminQueryParam queryParam,
+                           @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
+                           @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
+        List<AdminVo> list = adminService.listPage(queryParam,pageSize,pageNum);
+        return new CommonResult().pageSuccess(list);
+    }
+
+
+    @ApiOperation("更新后台管理员")
+    @RequestMapping(value = "/update/{id}",method = RequestMethod.POST)
+    @ResponseBody
+    /*@PreAuthorize("hasAuthority('good:update')")*/
+    public Object update(@PathVariable("id") Integer id,
+                         @Validated @RequestBody AdminParam adminParam,
+                         BindingResult result){
+        int count = adminService.update(id,adminParam);
+        if(count == 1){
+            return new CommonResult().success(count);
+        }else{
+            return new CommonResult().failed();
+        }
+    }
+
+    @ApiOperation("删除后台管理员")
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    /*@PreAuthorize("hasAuthority('good:delete')")*/
+    public Object delete(@PathVariable("id") Integer id){
+        int count = adminService.delete(id);
+        if(count == 1){
+            return new CommonResult().success(null);
+        }else{
+            return new CommonResult().failed();
+        }
     }
 
 }

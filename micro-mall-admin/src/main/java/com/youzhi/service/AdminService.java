@@ -1,6 +1,7 @@
 package com.youzhi.service;
 
 import com.youzhi.dto.AdminParam;
+import com.youzhi.dto.AdminQueryParam;
 import com.youzhi.dto.AdminVo;
 import com.youzhi.model.Admin;
 import com.youzhi.model.Permission;
@@ -40,5 +41,31 @@ public interface AdminService {
      * @param adminParam
      * @return
      */
-    Admin register(AdminParam adminParam);
+    int add(AdminParam adminParam);
+
+    /**
+     * 分页查询后台管理员
+     * @param queryParam
+     * @param pageSize
+     * @param pageNum
+     * @return
+     */
+    List<AdminVo> listPage(AdminQueryParam queryParam, Integer pageSize, Integer pageNum);
+
+
+    /**
+     * 更新后台管理员
+     * @param id
+     * @param adminParam
+     * @return
+     */
+    int update(Integer id, AdminParam adminParam);
+
+
+    /**
+     * 删除后台管理员
+     * @param id
+     * @return
+     */
+    int delete(Integer id);
 }

@@ -1,14 +1,17 @@
 package com.youzhi.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.youzhi.dao.AdminDao;
 import com.youzhi.dao.AdminRoleRelationDao;
 import com.youzhi.dto.AdminParam;
+import com.youzhi.dto.AdminQueryParam;
 import com.youzhi.dto.AdminVo;
 import com.youzhi.mapper.AdminLoginLogMapper;
 import com.youzhi.mapper.AdminMapper;
 import com.youzhi.model.*;
 import com.youzhi.service.AdminService;
 import com.youzhi.util.JwtTokenUtil;
+import com.youzhi.util.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -88,23 +91,50 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin register(AdminParam adminParam) {
+    public int add(AdminParam adminParam) {
+        Admin currentAdmin = SecurityUtils.getAdmin();
         Admin admin = new Admin();
         BeanUtils.copyProperties(adminParam,admin);
         admin.setCreateTime(new Date());
         admin.setStatus(1);
+        admin.setCreateAdminId(currentAdmin.getId());
         //查询是否有相同的用户名
         AdminExample example = new AdminExample();
         example.createCriteria().andUsernameEqualTo(admin.getUsername());
         List<Admin> adminList = adminMapper.selectByExample(example);
         if(adminList.size() > 0){
-            return null;
+            return 0;
         }
         //将密码进行加密操作
         String md5Password = passwordEncoder.encode(admin.getPassword());
         admin.setPassword(md5Password);
-        adminMapper.insert(admin);
-        return admin;
+        return adminMapper.insert(admin);
+    }
+
+    @Override
+    public List<AdminVo> listPage(AdminQueryParam queryParam, Integer pageSize, Integer pageNum) {
+        PageHelper.startPage(pageNum,pageSize);
+        return adminDao.list(queryParam);
+    }
+
+    @Override
+    public int update(Integer id, AdminParam adminParam) {
+        Admin currentAdmin = SecurityUtils.getAdmin();
+        Admin admin = new Admin();
+        BeanUtils.copyProperties(adminParam,admin);
+        admin.setId(id);
+        admin.setUpdateAdminId(currentAdmin.getId());
+        admin.setUdpateTime(new Date());
+
+        /*更新商品*/
+        AdminExample example = new AdminExample();
+        example.createCriteria().andIdEqualTo(id);
+        return adminMapper.updateByExampleSelective(admin,example);
+    }
+
+    @Override
+    public int delete(Integer id) {
+        return adminMapper.deleteByPrimaryKey(id);
     }
 
     /**

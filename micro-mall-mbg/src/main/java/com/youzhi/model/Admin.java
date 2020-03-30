@@ -51,7 +51,7 @@ public class Admin implements Serializable {
      *
      * @mbggenerated
      */
-    private String nickName;
+    private String nickname;
 
     /**
      * 备注信息
@@ -115,7 +115,7 @@ public class Admin implements Serializable {
         sb.append(", password=").append(password);
         sb.append(", icon=").append(icon);
         sb.append(", email=").append(email);
-        sb.append(", nickName=").append(nickName);
+        sb.append(", nickname=").append(nickname);
         sb.append(", note=").append(note);
         sb.append(", createTime=").append(createTime);
         sb.append(", createAdminId=").append(createAdminId);

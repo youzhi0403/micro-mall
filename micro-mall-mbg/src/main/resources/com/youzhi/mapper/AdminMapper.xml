@@ -7,7 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="note" jdbcType="VARCHAR" property="note" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="create_admin_id" jdbcType="INTEGER" property="createAdminId" />
@@ -75,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, icon, email, nick_name, note, create_time, create_admin_id, 
+    id, username, password, icon, email, nickname, note, create_time, create_admin_id, 
     udpate_time, update_admin_id, login_time, status
   </sql>
   <select id="selectByExample" parameterType="com.youzhi.model.AdminExample" resultMap="BaseResultMap">
@@ -113,12 +113,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into admin (username, password, icon, 
-      email, nick_name, note, 
+      email, nickname, note, 
       create_time, create_admin_id, udpate_time, 
       update_admin_id, login_time, status
       )
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createAdminId,jdbcType=INTEGER}, #{udpateTime,jdbcType=TIMESTAMP}, 
       #{updateAdminId,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
       )
@@ -141,8 +141,8 @@
       <if test="email != null">
         email,
       </if>
-      <if test="nickName != null">
-        nick_name,
+      <if test="nickname != null">
+        nickname,
       </if>
       <if test="note != null">
         note,
@@ -179,8 +179,8 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="nickName != null">
-        #{nickName,jdbcType=VARCHAR},
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
@@ -229,8 +229,8 @@
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.nickName != null">
-        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
       </if>
       <if test="record.note != null">
         note = #{record.note,jdbcType=VARCHAR},
@@ -265,7 +265,7 @@
       password = #{record.password,jdbcType=VARCHAR},
       icon = #{record.icon,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
-      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
       note = #{record.note,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       create_admin_id = #{record.createAdminId,jdbcType=INTEGER},
@@ -292,8 +292,8 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="nickName != null">
-        nick_name = #{nickName,jdbcType=VARCHAR},
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
@@ -325,7 +325,7 @@
       password = #{password,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_admin_id = #{createAdminId,jdbcType=INTEGER},

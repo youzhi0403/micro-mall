@@ -41,10 +41,10 @@ public class GoodController {
     @RequestMapping(value = "/listPage",method = RequestMethod.GET)
     @ResponseBody
     /*@PreAuthorize("hasAuthority('good:read')")*/
-    public Object listPage(GoodQueryParam goodQueryParam,
+    public Object listPage(GoodQueryParam queryParam,
                           @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
                           @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
-        List<GoodVo> list = goodService.listPage(goodQueryParam,pageSize,pageNum);
+        List<GoodVo> list = goodService.listPage(queryParam,pageSize,pageNum);
         return new CommonResult().pageSuccess(list);
     }
 

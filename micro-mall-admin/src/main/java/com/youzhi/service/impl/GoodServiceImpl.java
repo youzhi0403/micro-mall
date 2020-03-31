@@ -65,9 +65,9 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public List<GoodVo> listPage(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum) {
+    public List<GoodVo> listPage(GoodQueryParam queryParam, Integer pageSize, Integer pageNum) {
         PageHelper.startPage(pageNum,pageSize);
-        return goodDao.list(goodQueryParam);
+        return goodDao.list(queryParam);
     }
 
     @Override

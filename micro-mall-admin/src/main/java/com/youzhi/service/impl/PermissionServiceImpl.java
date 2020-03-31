@@ -10,6 +10,8 @@ import com.youzhi.model.Permission;
 import com.youzhi.model.PermissionExample;
 import com.youzhi.service.PermissionService;
 import com.youzhi.util.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class PermissionServiceImpl implements PermissionService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PermissionServiceImpl.class);
 
     @Autowired
     private PermissionMapper permissionMapper;

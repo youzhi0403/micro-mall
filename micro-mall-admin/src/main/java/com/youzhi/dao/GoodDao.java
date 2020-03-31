@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface GoodDao {
 
-    List<GoodVo> list(@Param("queryParam") GoodQueryParam goodQueryParam);
+    List<GoodVo> list(@Param("queryParam") GoodQueryParam queryParam);
 
     int addBatch(List<Good> goodList);
 }

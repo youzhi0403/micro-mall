@@ -9,6 +9,8 @@ import com.youzhi.mapper.GoodClassificationRelationMapper;
 import com.youzhi.model.*;
 import com.youzhi.service.ClassificationService;
 import com.youzhi.util.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ import java.util.List;
  */
 @Service
 public class ClassificationServiceImpl implements ClassificationService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClassificationServiceImpl.class);
 
     @Autowired
     private ClassificationDao classificationDao;

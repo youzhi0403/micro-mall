@@ -5,6 +5,8 @@ import com.youzhi.dao.AccountRecordDao;
 import com.youzhi.dto.AccountRecordQueryParam;
 import com.youzhi.model.AccountRecord;
 import com.youzhi.service.AccountRecordService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @Service
 public class AccountRecordServiceImpl implements AccountRecordService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccountRecordServiceImpl.class);
 
     @Autowired
     private AccountRecordDao accountRecordDao;

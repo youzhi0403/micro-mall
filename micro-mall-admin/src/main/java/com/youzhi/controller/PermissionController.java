@@ -7,6 +7,8 @@ import com.youzhi.model.Permission;
 import com.youzhi.service.PermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -23,6 +25,8 @@ import java.util.List;
 @Api(tags = "PermissionController", description = "后台用户权限管理")
 @RequestMapping("/permission")
 public class PermissionController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PermissionController.class);
     @Autowired
     private PermissionService permissionService;
 

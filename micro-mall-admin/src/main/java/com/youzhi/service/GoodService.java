@@ -27,12 +27,12 @@ public interface GoodService {
 
     /**
      * 分页查询商品
-     * @param goodQueryParam
+     * @param queryParam
      * @param pageSize
      * @param pageNum
      * @return
      */
-    List<GoodVo> listPage(GoodQueryParam goodQueryParam, Integer pageSize, Integer pageNum);
+    List<GoodVo> listPage(GoodQueryParam queryParam, Integer pageSize, Integer pageNum);
 
     /**
      * 更新商品

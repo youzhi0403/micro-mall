@@ -5,6 +5,8 @@ import com.youzhi.dao.AddressDao;
 import com.youzhi.dto.AddressQueryParam;
 import com.youzhi.dto.AddressVo;
 import com.youzhi.service.AddressService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @Service
 public class AddressServiceImpl implements AddressService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddressServiceImpl.class);
 
     @Autowired
     private AddressDao addressDao;

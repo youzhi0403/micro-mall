@@ -16,6 +16,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -43,6 +46,7 @@ public class GoodServiceImpl implements GoodService {
     private GoodDao goodDao;
 
     @Override
+    @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
     public int add(GoodParam goodParam) {
         Admin currentAdmin = SecurityUtils.getAdmin();
         Good good = new Good();
@@ -71,6 +75,7 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
     public int update(Integer id, GoodParam goodParam) {
         Admin currentAdmin = SecurityUtils.getAdmin();
         Good good = new Good();

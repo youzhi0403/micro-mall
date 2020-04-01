@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by Mybatis Generator 2020/03/30
+* Created by Mybatis Generator 2020/04/01
 */
 public interface NotificationOrderMapper {
     int countByExample(NotificationOrderExample example);

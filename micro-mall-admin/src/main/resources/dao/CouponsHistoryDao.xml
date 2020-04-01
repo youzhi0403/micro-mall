@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzhi.dao.CouponsHistoryDao">
+    <resultMap id="CouponsHistoryVoResultMap" type="com.youzhi.dto.CouponsHistoryVo" extends="com.youzhi.mapper.CouponsHistoryMapper.BaseResultMap">
+        <association property="coupons" resultMap="com.youzhi.mapper.CouponsMapper.BaseResultMap" columnPrefix="coupons_"/>
+    </resultMap>
+
+    <select id="list" resultMap="CouponsHistoryVoResultMap">
+        select ch.*,
+        c.money coupons_money
+        from coupons_history ch
+        left join coupons c on c.id = ch.coupons_id
+        where
+        1 = 1
+        <if test="queryParam.couponsId != null">
+            and ch.coupons_id = #{queryParam.couponsId}
+        </if>
+        <if test="queryParam.userNickname != null">
+            and ch.user_nickname like %#{queryParam.userNickname}%
+        </if>
+        <if test="queryParam.createTime != null">
+            and date_format(#{queryParam.createTime},'%Y-%m-%d') = date_format(ch.create_time,'%Y-%m-%d')
+        </if>
+        <if test="queryParam.useType != null">
+            and c.use_type = #{queryParam.useType}
+        </if>
+        order by ch.create_time desc
+    </select>
+
+</mapper>

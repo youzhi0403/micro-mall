@@ -6,13 +6,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class MircoMallAdminApplication extends SpringBootServletInitializer {
+public class MicroMallAdminApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(MircoMallAdminApplication.class, args);
+        SpringApplication.run(MicroMallAdminApplication.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(MircoMallAdminApplication.class);
+        return builder.sources(MicroMallAdminApplication.class);
     }
 }

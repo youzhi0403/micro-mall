@@ -13,12 +13,5 @@ import java.util.List;
 public class OrderVo extends Order {
     private User user;
 
-    private List<OrderGoodRelation> orderGoodRelationList;
-
-    private List<Good> goodList;
-
-    private Logistics logisticsList;
-
-    private List<LogisticsItem> logisticsItemList;
-
+    private List<OrderItem> orderItemList;
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author youzhi
@@ -23,7 +24,7 @@ public class ClassificationParam {
     private Integer parentId;
 
     @ApiModelProperty(value = "分类种类",required = true)
-    @NotEmpty(message = "分类种类不能为空")
+    @NotNull(message = "分类种类不能为空")
     private Integer kind;
 
 }

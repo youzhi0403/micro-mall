@@ -283,6 +283,146 @@ public class CouponsGoodRelationExample {
             addCriterion("good_id not between", value1, value2, "goodId");
             return (Criteria) this;
         }
+
+        public Criteria andGoodNameIsNull() {
+            addCriterion("good_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameIsNotNull() {
+            addCriterion("good_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameEqualTo(String value) {
+            addCriterion("good_name =", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameNotEqualTo(String value) {
+            addCriterion("good_name <>", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameGreaterThan(String value) {
+            addCriterion("good_name >", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameGreaterThanOrEqualTo(String value) {
+            addCriterion("good_name >=", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameLessThan(String value) {
+            addCriterion("good_name <", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameLessThanOrEqualTo(String value) {
+            addCriterion("good_name <=", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameLike(String value) {
+            addCriterion("good_name like", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameNotLike(String value) {
+            addCriterion("good_name not like", value, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameIn(List<String> values) {
+            addCriterion("good_name in", values, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameNotIn(List<String> values) {
+            addCriterion("good_name not in", values, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameBetween(String value1, String value2) {
+            addCriterion("good_name between", value1, value2, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNameNotBetween(String value1, String value2) {
+            addCriterion("good_name not between", value1, value2, "goodName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumIsNull() {
+            addCriterion("good_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumIsNotNull() {
+            addCriterion("good_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumEqualTo(String value) {
+            addCriterion("good_num =", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumNotEqualTo(String value) {
+            addCriterion("good_num <>", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumGreaterThan(String value) {
+            addCriterion("good_num >", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumGreaterThanOrEqualTo(String value) {
+            addCriterion("good_num >=", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumLessThan(String value) {
+            addCriterion("good_num <", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumLessThanOrEqualTo(String value) {
+            addCriterion("good_num <=", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumLike(String value) {
+            addCriterion("good_num like", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumNotLike(String value) {
+            addCriterion("good_num not like", value, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumIn(List<String> values) {
+            addCriterion("good_num in", values, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumNotIn(List<String> values) {
+            addCriterion("good_num not in", values, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumBetween(String value1, String value2) {
+            addCriterion("good_num between", value1, value2, "goodNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoodNumNotBetween(String value1, String value2) {
+            addCriterion("good_num not between", value1, value2, "goodNum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

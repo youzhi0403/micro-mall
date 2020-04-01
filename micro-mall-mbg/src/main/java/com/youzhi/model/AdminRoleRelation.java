@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/03/30
+ created by mybatis generator 2020/04/01
 */
 @Data
 @Accessors(chain = true)

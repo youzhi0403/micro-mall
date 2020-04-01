@@ -22,7 +22,6 @@ public interface GoodService {
      * @param goodParam
      * @return
      */
-    @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
     int add(GoodParam goodParam);
 
     /**
@@ -40,7 +39,6 @@ public interface GoodService {
      * @param goodParam
      * @return
      */
-    @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
     int update(Integer id, GoodParam goodParam);
 
 

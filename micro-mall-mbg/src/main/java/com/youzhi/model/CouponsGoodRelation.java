@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/03/30
+ created by mybatis generator 2020/04/01
 */
 @Data
 @Accessors(chain = true)
@@ -31,6 +31,20 @@ public class CouponsGoodRelation implements Serializable {
      */
     private Integer goodId;
 
+    /**
+     * 商品名称
+     *
+     * @mbggenerated
+     */
+    private String goodName;
+
+    /**
+     * 商品编码
+     *
+     * @mbggenerated
+     */
+    private String goodNum;
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -42,6 +56,8 @@ public class CouponsGoodRelation implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", couponsId=").append(couponsId);
         sb.append(", goodId=").append(goodId);
+        sb.append(", goodName=").append(goodName);
+        sb.append(", goodNum=").append(goodNum);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

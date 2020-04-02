@@ -1,8 +1,8 @@
 package com.youzhi.util;
 
 import com.youzhi.bo.AdminUserDetails;
-import com.youzhi.model.Admin;
-import com.youzhi.model.Permission;
+import com.youzhi.model.AmsAdmin;
+import com.youzhi.model.AmsPermission;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -32,7 +32,7 @@ public class SecurityUtils {
      * 获取当前用户信息
      * @return
      */
-    public static Admin getAdmin(){
+    public static AmsAdmin getAdmin(){
         AdminUserDetails adminUserDetails = (AdminUserDetails) getCurrentPrincipal();
         return adminUserDetails.getAdmin();
     }
@@ -41,7 +41,7 @@ public class SecurityUtils {
      * 获取当前用户权限
      * @return
      */
-    public static List<Permission> getPermissions(){
+    public static List<AmsPermission> getPermissions(){
         AdminUserDetails adminUserDetails = (AdminUserDetails) getCurrentPrincipal();
         return adminUserDetails.getPermissionList();
     }

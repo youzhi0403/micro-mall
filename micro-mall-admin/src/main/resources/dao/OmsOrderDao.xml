@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzhi.dao.OmsOrderDao">
+    <resultMap id="OrderVoResultMap" type="com.youzhi.dto.OmsOrderVo" extends="com.youzhi.mapper.OmsOrderMapper.BaseResultMap">
+        <collection property="orderItemList" resultMap="com.youzhi.mapper.OmsOrderItemMapper.BaseResultMap" columnPrefix="oi_">
+        </collection>
+        <collection property="orderOperateHistoryList" resultMap="com.youzhi.mapper.OmsOrderOperateHistoryMapper.BaseResultMap" columnPrefix="ooh_">
+        </collection>
+    </resultMap>
+
+
+    <select id="list" resultMap="com.youzhi.mapper.OmsOrderMapper.BaseResultMap">
+        select o.*
+        from oms_order o
+        left join ums_user u on u.id = o.user_id
+        where
+        1 = 1
+        <if test="queryParam.createTime != null">
+            and date_format(#{queryParam.createTime},'%Y-%m-%d') = date_format(o.create_time,'%Y-%m-%d')
+        </if>
+        <if test="queryParam.account != null">
+            and u.account like %#{queryParam.account}%
+        </if>
+        <if test="queryParam.status != null">
+            and o.status = #{queryParam.status}
+        </if>
+        order by o.create_time desc
+    </select>
+
+    <select id="detail" resultMap="OrderVoResultMap">
+        select o.*,
+        oi.order_id oi_order_id,
+        oi.order_num oi_order_num,
+        oi.order_num oi_order_num,
+        oi.good_id oi_good_id,
+        oi.good_pic oi_good_pic,
+        oi.good_name oi_good_name,
+        oi.good_price oi_good_price,
+        oi.good_quantity oi_good_quantity,
+        oi.coupons_amount oi_coupons_amount,
+        oi.real_amount oi_real_amount,
+        ooh.order_id ooh_order_id,
+        ooh.operate_man ooh_operate_man,
+        ooh.create_time ooh_create_time,
+        ooh.order_status ooh_order_status,
+        ooh.remark ooh_remark
+        from oms_order o
+        left join oms_order_item oi on oi.order_id = o.id
+        left join oms_order_operate_history ooh on ooh.order_id = o.id
+        where o.id = #{id}
+        order by o.create_time desc
+    </select>
+
+    <update id="delivery">
+        UPDATE oms_order
+        SET
+        delivery_num = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN #{item.deliverySn}
+        </foreach>
+        END,
+        delivery_company = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN #{item.deliveryCompany}
+        </foreach>
+        END,
+        delivery_time = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN now()
+        </foreach>
+        END,
+        `status` = CASE id
+        <foreach collection="list" item="item">
+            WHEN #{item.orderId} THEN 2
+        </foreach>
+        END
+        WHERE
+        id IN
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item.orderId}
+        </foreach>
+        AND `status` = 1
+    </update>
+</mapper>

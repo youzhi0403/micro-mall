@@ -4,12 +4,9 @@ import com.youzhi.bo.AdminUserDetails;
 import com.youzhi.component.JwtAuthenticationTokenFilter;
 import com.youzhi.component.RestAuthenticationEntryPoint;
 import com.youzhi.component.RestfulAccessDeniedHandler;
-import com.youzhi.mapper.AdminMapper;
-import com.youzhi.model.Admin;
-import com.youzhi.model.Permission;
-import com.youzhi.model.User;
-import com.youzhi.service.AdminService;
-import com.youzhi.service.UserService;
+import com.youzhi.model.AmsAdmin;
+import com.youzhi.model.AmsPermission;
+import com.youzhi.service.AmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +41,7 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private AdminService adminService;
+    private AmsAdminService adminService;
     @Autowired
     private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
     @Autowired
@@ -102,9 +99,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService(){
         //获取登录用户信息
         return username -> {
-            Admin admin = adminService.getAdminByUsername(username);
+            AmsAdmin admin = adminService.getAdminByUsername(username);
             if(admin != null){
-                List<Permission> permissionList = adminService.getPermissionList(admin.getId());
+                List<AmsPermission> permissionList = adminService.getPermissionList(admin.getId());
                 return new AdminUserDetails(admin,permissionList);
             }
             throw new UsernameNotFoundException("用户名或密码错误");

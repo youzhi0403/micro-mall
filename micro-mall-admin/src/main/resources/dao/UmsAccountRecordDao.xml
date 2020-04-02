@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzhi.dao.UmsAccountRecordDao">
+    <select id="list" resultMap="com.youzhi.mapper.UmsAccountRecordMapper.BaseResultMap">
+        select *
+        from ums_account_record
+        left join ums_user u on u.id = account_record.user_id
+        where
+        1 = 1
+        <if test="queryParam.createTime != null">
+            and DATE_FORMAT(account_record.create_time,'yyyy-MM-dd') = DATE_FORMAT(queryParam.createTime,'yyyy-MM-dd')
+        </if>
+        <if test="queryParam.account != null">
+            and u.account = #{queryParam.account}
+        </if>
+        order by account_record.create_time desc
+    </select>
+
+</mapper>

@@ -1,7 +1,7 @@
 package com.youzhi.bo;
 
-import com.youzhi.model.Admin;
-import com.youzhi.model.Permission;
+import com.youzhi.model.AmsAdmin;
+import com.youzhi.model.AmsPermission;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
  */
 @Data
 public class AdminUserDetails implements UserDetails {
-    private Admin admin;
-    private List<Permission> permissionList;
+    private AmsAdmin admin;
+    private List<AmsPermission> permissionList;
 
-    public AdminUserDetails(Admin admin,List<Permission> permissionList){
+    public AdminUserDetails(AmsAdmin admin,List<AmsPermission> permissionList){
         this.admin = admin;
         this.permissionList = permissionList;
     }

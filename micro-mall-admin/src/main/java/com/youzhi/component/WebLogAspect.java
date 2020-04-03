@@ -1,7 +1,6 @@
 package com.youzhi.component;
 
 import com.youzhi.bo.WebLog;
-import com.youzhi.util.JsonUtil;
 import com.youzhi.util.RequestUtil;
 import io.swagger.annotations.ApiOperation;
 import net.logstash.logback.marker.Markers;
@@ -84,7 +83,7 @@ public class WebLogAspect {
         logMap.put("spendTime",webLog.getSpendTime());
         logMap.put("description",webLog.getDescription());
         LOGGER.info("{}",Markers.appendEntries(logMap));
-        LOGGER.info("{}", JsonUtil.objectToJson(webLog));
+        LOGGER.info("{}", webLog);
         return result;
     }
 

@@ -29,3 +29,9 @@ jwt:
   secret: mySecret  #JWT加解密使用的密钥
   expiration: 604800  #JWT的超期限时间（60*60*24）
   tokenHead: Bearer  #JWT负载中拿到开头
+
+minio:
+  endpoint: http://106.15.190.109:9000 #MINIO服务器所在地址
+  bucketName: mall #存储桶名称
+  accessKey: minioadmin #访问的key
+  secretKey: minioadmin #访问的秘钥

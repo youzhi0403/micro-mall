@@ -2,7 +2,7 @@ logback：
 https://www.cnblogs.com/wuyoucao/p/10983241.html
 
 代码规范
-1.增删查改方法全部用 add/delete/update/listPage(分页查询)/list(不分页查询)/getList(用于前端展示)/deleteBatch(批量删除)
+1.增删查改方法全部用 add/delete/update/listPage(分页查询)/list(不分页查询)/getList(用于前端展示)/deleteBatch(批量删除)/detail
 2.Result全部改成Vo
 3.表一律加上create_time,update_time,create_user_id(看情况选择),update_user_id(看情况选择)
 4.查询所有的sql一律加上 order by XX desc

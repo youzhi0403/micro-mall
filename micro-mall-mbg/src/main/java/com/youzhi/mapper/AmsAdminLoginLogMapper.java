@@ -2,12 +2,11 @@ package com.youzhi.mapper;
 
 import com.youzhi.model.AmsAdminLoginLog;
 import com.youzhi.model.AmsAdminLoginLogExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 /**
-* Created by Mybatis Generator 2020/04/03
+* Created by Mybatis Generator 2020/04/19
 */
 public interface AmsAdminLoginLogMapper {
     int countByExample(AmsAdminLoginLogExample example);

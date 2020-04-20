@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* Created by Mybatis Generator 2020/04/03
+* Created by Mybatis Generator 2020/04/19
 */
 public interface UmsFootprintMapper {
     int countByExample(UmsFootprintExample example);

@@ -92,4 +92,9 @@ public class AmsRoleServiceImpl implements AmsRoleService {
         PageHelper.startPage(pageNum,pageSize);
         return roleMapper.selectByExample(new AmsRoleExample());
     }
+
+    @Override
+    public List<AmsRole> getList() {
+        return roleMapper.selectByExample(new AmsRoleExample());
+    }
 }

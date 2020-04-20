@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- created by mybatis generator 2020/04/03
+ created by mybatis generator 2020/04/19
 */
 @Data
 @Accessors(chain = true)
@@ -79,7 +79,7 @@ public class AmsAdmin implements Serializable {
      *
      * @mbggenerated
      */
-    private Date udpateTime;
+    private Date updateTime;
 
     /**
      * 更新人id
@@ -119,7 +119,7 @@ public class AmsAdmin implements Serializable {
         sb.append(", note=").append(note);
         sb.append(", createTime=").append(createTime);
         sb.append(", createAdminId=").append(createAdminId);
-        sb.append(", udpateTime=").append(udpateTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", updateAdminId=").append(updateAdminId);
         sb.append(", loginTime=").append(loginTime);
         sb.append(", status=").append(status);

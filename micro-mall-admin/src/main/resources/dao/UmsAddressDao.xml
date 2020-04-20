@@ -11,12 +11,12 @@
     <select id="list" resultMap="addressVoResultMap">
         select a.*,u.nickname,u.account
         from ums_address a
-        left join ums_user u on u.id = address.user_id
+        left join ums_user u on u.id = a.user_id
         where
         1 = 1
         <if test="queryParam.account != null">
             and u.account = #{queryParam.account}
         </if>
-        order by address.create_time desc
+        order by a.create_time desc
     </select>
 </mapper>

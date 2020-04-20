@@ -22,4 +22,6 @@ public interface AmsRoleService {
     int updatePermission(Integer roleId, List<Integer> permissionIds);
 
     List<AmsRole> listPage(Integer pageSize, Integer pageNum);
+
+    List<AmsRole> getList();
 }

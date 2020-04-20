@@ -90,4 +90,12 @@ public class AmsRoleController {
         return new CommonResult().success(roleList);
     }
 
+    @ApiOperation("获取所有角色(用于前端下拉列表)")
+    @RequestMapping(value = "/getList",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getList(){
+        List<AmsRole> roleList = roleService.getList();
+        return new CommonResult().success(roleList);
+    }
+
 }

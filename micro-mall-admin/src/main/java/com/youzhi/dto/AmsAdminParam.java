@@ -33,7 +33,7 @@ public class AmsAdminParam {
     private String email;
 
     @ApiModelProperty(value = "用户昵称")
-    private String nickName;
+    private String nickname;
 
     @ApiModelProperty(value = "备注")
     private String note;

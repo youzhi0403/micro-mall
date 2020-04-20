@@ -136,7 +136,7 @@ public class AmsAdminServiceImpl implements AmsAdminService {
         BeanUtils.copyProperties(amsAdminParam,admin);
         admin.setId(id);
         admin.setUpdateAdminId(currentAdmin.getId());
-        admin.setUdpateTime(new Date());
+        admin.setUpdateTime(new Date());
 
         /*更新商品*/
         AmsAdminExample example = new AmsAdminExample();

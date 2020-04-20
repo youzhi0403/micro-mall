@@ -705,63 +705,63 @@ public class AmsAdminExample {
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeIsNull() {
-            addCriterion("udpate_time is null");
+        public Criteria andUpdateTimeIsNull() {
+            addCriterion("update_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeIsNotNull() {
-            addCriterion("udpate_time is not null");
+        public Criteria andUpdateTimeIsNotNull() {
+            addCriterion("update_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeEqualTo(Date value) {
-            addCriterion("udpate_time =", value, "udpateTime");
+        public Criteria andUpdateTimeEqualTo(Date value) {
+            addCriterion("update_time =", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeNotEqualTo(Date value) {
-            addCriterion("udpate_time <>", value, "udpateTime");
+        public Criteria andUpdateTimeNotEqualTo(Date value) {
+            addCriterion("update_time <>", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeGreaterThan(Date value) {
-            addCriterion("udpate_time >", value, "udpateTime");
+        public Criteria andUpdateTimeGreaterThan(Date value) {
+            addCriterion("update_time >", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("udpate_time >=", value, "udpateTime");
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_time >=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeLessThan(Date value) {
-            addCriterion("udpate_time <", value, "udpateTime");
+        public Criteria andUpdateTimeLessThan(Date value) {
+            addCriterion("update_time <", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("udpate_time <=", value, "udpateTime");
+        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("update_time <=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeIn(List<Date> values) {
-            addCriterion("udpate_time in", values, "udpateTime");
+        public Criteria andUpdateTimeIn(List<Date> values) {
+            addCriterion("update_time in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeNotIn(List<Date> values) {
-            addCriterion("udpate_time not in", values, "udpateTime");
+        public Criteria andUpdateTimeNotIn(List<Date> values) {
+            addCriterion("update_time not in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeBetween(Date value1, Date value2) {
-            addCriterion("udpate_time between", value1, value2, "udpateTime");
+        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
+            addCriterion("update_time between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUdpateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("udpate_time not between", value1, value2, "udpateTime");
+        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 

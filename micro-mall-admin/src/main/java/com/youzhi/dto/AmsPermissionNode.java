@@ -12,5 +12,4 @@ import java.util.List;
 @Data
 public class AmsPermissionNode extends AmsPermission {
     private List<AmsPermissionNode> children;
-
 }

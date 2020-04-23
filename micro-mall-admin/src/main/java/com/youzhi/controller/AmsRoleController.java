@@ -87,7 +87,7 @@ public class AmsRoleController {
     public Object listPage(@RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize,
                        @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum){
         List<AmsRole> roleList = roleService.listPage(pageSize,pageNum);
-        return new CommonResult().success(roleList);
+        return new CommonResult().pageSuccess(roleList);
     }
 
     @ApiOperation("获取所有角色(用于前端下拉列表)")

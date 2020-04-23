@@ -191,6 +191,4 @@ public class AmsAdminController {
         return new CommonResult().success(permissionList);
     }
 
-
-
 }

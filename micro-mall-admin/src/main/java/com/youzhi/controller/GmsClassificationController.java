@@ -1,8 +1,6 @@
 package com.youzhi.controller;
 
-import com.youzhi.dto.GmsClassificationParam;
-import com.youzhi.dto.GmsClassificationQueryParam;
-import com.youzhi.dto.CommonResult;
+import com.youzhi.dto.*;
 import com.youzhi.model.GmsClassification;
 import com.youzhi.service.GmsClassificationService;
 import io.swagger.annotations.Api;
@@ -63,6 +61,10 @@ public class GmsClassificationController {
     public Object update(@PathVariable("id") Integer id,
                          @Validated @RequestBody GmsClassificationParam gmsClassificationParam,
                          BindingResult result){
+        /*做校验，parentId和id不可相同*/
+        if(id.equals(gmsClassificationParam.getParentId())){
+            return new CommonResult().validateFailed("不可选择自己作为父元素");
+        }
         int count = classificationService.update(id, gmsClassificationParam);
         if(count == 1){
             return new CommonResult().success(count);
@@ -84,6 +86,7 @@ public class GmsClassificationController {
         }
     }
 
+    /*todo delete*/
     @ApiOperation("查询所有商品分类(用于前端下拉框展示)")
     @RequestMapping(value = "/getList/{kind}",method = RequestMethod.GET)
     @ResponseBody
@@ -91,6 +94,22 @@ public class GmsClassificationController {
     public Object getList(@PathVariable Integer kind){
         List<GmsClassification> list = classificationService.getList(kind);
         return new CommonResult().success(list);
+    }
+
+    @ApiOperation("以层级结构返回所有分类")
+    @RequestMapping(value = "/treeList/{kind}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object treeList(@PathVariable Integer kind){
+        List<GmsClassificationNode> classificationNodeList = classificationService.treeList(kind);
+        return new CommonResult().success(classificationNodeList);
+    }
+
+    @ApiOperation("获取分类详情")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object detail(@PathVariable Integer id){
+        GmsClassificationVo gmsClassificationVo = classificationService.detail(id);
+        return new CommonResult().success(gmsClassificationVo);
     }
 
 }

@@ -1,7 +1,9 @@
 package com.youzhi.service;
 
+import com.youzhi.dto.GmsClassificationNode;
 import com.youzhi.dto.GmsClassificationParam;
 import com.youzhi.dto.GmsClassificationQueryParam;
+import com.youzhi.dto.GmsClassificationVo;
 import com.youzhi.model.GmsClassification;
 
 import java.util.List;
@@ -21,4 +23,7 @@ public interface GmsClassificationService {
 
     List<GmsClassification> getList(Integer kind);
 
+    List<GmsClassificationNode> treeList(Integer kind);
+
+    GmsClassificationVo detail(Integer id);
 }

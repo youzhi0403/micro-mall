@@ -2,6 +2,7 @@ package com.youzhi.service;
 
 import com.youzhi.dto.AmsPermissionNode;
 import com.youzhi.dto.AmsPermissionParam;
+import com.youzhi.dto.AmsPermissionVo;
 import com.youzhi.model.AmsPermission;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface AmsPermissionService {
     List<AmsPermissionNode> treeList();
 
     List<AmsPermission> listPage(Integer pageSize, Integer pageNum);
+
+    AmsPermissionVo detail(Integer id);
 }

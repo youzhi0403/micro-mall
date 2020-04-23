@@ -2,8 +2,10 @@ package com.youzhi.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.youzhi.dao.GmsClassificationDao;
+import com.youzhi.dto.GmsClassificationNode;
 import com.youzhi.dto.GmsClassificationParam;
 import com.youzhi.dto.GmsClassificationQueryParam;
+import com.youzhi.dto.GmsClassificationVo;
 import com.youzhi.mapper.GmsClassificationMapper;
 import com.youzhi.mapper.GmsGoodClassificationRelationMapper;
 import com.youzhi.model.AmsAdmin;
@@ -12,14 +14,18 @@ import com.youzhi.model.GmsClassificationExample;
 import com.youzhi.model.GmsGoodClassificationRelationExample;
 import com.youzhi.service.GmsClassificationService;
 import com.youzhi.util.SecurityUtils;
+import io.swagger.annotations.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author youzhi
@@ -76,6 +82,38 @@ public class GmsClassificationServiceImpl implements GmsClassificationService {
         return classificationDao.getList(kind);
     }
 
+    @Override
+    public List<GmsClassificationNode> treeList(Integer kind) {
+        GmsClassificationExample classificationExample = new GmsClassificationExample();
+        classificationExample.createCriteria().andKindEqualTo(kind);
+        List<GmsClassification> classificationList = classificationMapper.selectByExample(classificationExample);
+        List<GmsClassificationNode> result = classificationList.stream()
+                .filter(classification -> classification.getParentId().equals(0))
+                .map(classification -> covert(classification,classificationList)).collect(Collectors.toList());
+        return result;
+    }
+
+    @Override
+    public GmsClassificationVo detail(Integer id) {
+        GmsClassification classification = classificationMapper.selectByPrimaryKey(id);
+        GmsClassificationVo result = new GmsClassificationVo();
+        BeanUtils.copyProperties(classification,result);
+        result.setParentIds(getParentIds(classification));
+        return result;
+    }
+
+    private List<Integer> getParentIds(GmsClassification classification) {
+        List<Integer> result = new ArrayList<>();
+        while (classification.getParentId() != 0 && classification != null){
+            classification = classificationMapper.selectByPrimaryKey(classification.getParentId());
+            if(classification != null){
+                result.add(classification.getId());
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
+
     public GmsClassification setClassificationProperty(GmsClassification classification){
         AmsAdmin currentAdmin = SecurityUtils.getAdmin();
         classification.setCreateAdminId(currentAdmin.getId());
@@ -91,5 +129,20 @@ public class GmsClassificationServiceImpl implements GmsClassificationService {
             classification.setLevel(0);
         }
         return classification;
+    }
+
+    private GmsClassificationNode covert(GmsClassification classification,List<GmsClassification> classificationList){
+        GmsClassificationNode node = new GmsClassificationNode();
+        BeanUtils.copyProperties(classification,node);
+        List<GmsClassificationNode> children = classificationList.stream()
+                .filter(subClassification -> subClassification.getParentId().equals(classification.getId()))
+                .map(subClassification -> covert(subClassification,classificationList)).collect(Collectors.toList());
+        if(children.size() > 0){
+            node.setChildren(children);
+        }else{
+            node.setChildren(null);
+        }
+        return node;
+
     }
 }

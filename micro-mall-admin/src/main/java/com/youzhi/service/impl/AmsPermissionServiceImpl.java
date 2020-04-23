@@ -3,18 +3,22 @@ package com.youzhi.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.youzhi.dto.AmsPermissionNode;
 import com.youzhi.dto.AmsPermissionParam;
+import com.youzhi.dto.AmsPermissionVo;
 import com.youzhi.mapper.AmsPermissionMapper;
 import com.youzhi.model.AmsAdmin;
 import com.youzhi.model.AmsPermission;
 import com.youzhi.model.AmsPermissionExample;
 import com.youzhi.service.AmsPermissionService;
 import com.youzhi.util.SecurityUtils;
+import io.swagger.annotations.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -75,6 +79,27 @@ public class AmsPermissionServiceImpl implements AmsPermissionService {
         return permissionMapper.selectByExample(new AmsPermissionExample());
     }
 
+    @Override
+    public AmsPermissionVo detail(Integer id) {
+        AmsPermission permission = permissionMapper.selectByPrimaryKey(id);
+        AmsPermissionVo result = new AmsPermissionVo();
+        BeanUtils.copyProperties(permission,result);
+        result.setParentIds(getParentIds(permission));
+        return result;
+    }
+
+    private List<Integer> getParentIds(AmsPermission permission) {
+        List<Integer> result = new ArrayList<>();
+        while (permission.getParentId() != 0 && permission != null){
+            permission = permissionMapper.selectByPrimaryKey(permission.getParentId());
+            if(permission != null){
+                result.add(permission.getId());
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
+
     /**
      * 将权限转换为带有子级的权限对象
      * 当找不到子级权限的时候map操作不会再递归调用covert
@@ -85,7 +110,11 @@ public class AmsPermissionServiceImpl implements AmsPermissionService {
         List<AmsPermissionNode> children = permissionList.stream()
                 .filter(subPermission -> subPermission.getParentId().equals(permission.getId()))
                 .map(subPermission -> covert(subPermission,permissionList)).collect(Collectors.toList());
-        node.setChildren(children);
+        if(children.size() >0){
+            node.setChildren(children);
+        }else {
+            node.setChildren(null);
+        }
         return node;
     }
 }

@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author youzhi
@@ -22,7 +23,7 @@ public class AmsPermissionParam {
     private String description;
 
     @ApiModelProperty(value = "权限类型",required = true)
-    @NotEmpty(message = "权限类型不可为空")
+    @NotNull(message = "权限类型不可为空")
     private Integer type;
 
     @ApiModelProperty(value = "权限值",required = true)

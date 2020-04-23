@@ -1,5 +1,6 @@
 package com.youzhi.controller;
 
+import com.youzhi.dto.AmsPermissionVo;
 import com.youzhi.dto.CommonResult;
 import com.youzhi.dto.AmsPermissionNode;
 import com.youzhi.dto.AmsPermissionParam;
@@ -45,6 +46,10 @@ public class AmsPermissionController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public Object update(@PathVariable Integer id, @Validated @RequestBody AmsPermissionParam amsPermissionParam, BindingResult result) {
+        /*做校验，parentId和id不可相同*/
+        if(id.equals(amsPermissionParam.getParentId())){
+            return new CommonResult().validateFailed("不可选择自己作为父元素");
+        }
         int count = permissionService.update(id, amsPermissionParam);
         if(count>0){
             return new CommonResult().success(count);
@@ -79,5 +84,15 @@ public class AmsPermissionController {
         List<AmsPermission> list = permissionService.listPage(pageSize,pageNum);
         return new CommonResult().pageSuccess(list);
     }
+
+    @ApiOperation("获取权限详情")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object detail(@PathVariable Integer id){
+        AmsPermissionVo amsPermissionVo = permissionService.detail(id);
+        return new CommonResult().success(amsPermissionVo);
+    }
+
+
 
 }

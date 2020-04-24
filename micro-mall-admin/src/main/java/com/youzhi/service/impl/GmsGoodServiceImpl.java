@@ -62,7 +62,7 @@ public class GmsGoodServiceImpl implements GmsGoodService {
                 item -> {
                     GmsGoodClassificationRelation goodClassificationRelation = new GmsGoodClassificationRelation();
                     goodClassificationRelation.setGoodId(good.getId());
-                    goodClassificationRelation.setClassificationId(item.getId());
+                    goodClassificationRelation.setClassificationId(item);
                     goodClassificationRelationMapper.insertSelective(goodClassificationRelation);
                 }
         );
@@ -85,15 +85,17 @@ public class GmsGoodServiceImpl implements GmsGoodService {
         good.setUpdateAdminId(currentAdmin.getId());
         good.setUpdateTime(new Date());
         //更新类别
-        GmsGoodClassificationRelationExample goodClassificationRelationExample = new GmsGoodClassificationRelationExample();
-        goodClassificationRelationExample.createCriteria().andGoodIdEqualTo(id);
-        goodClassificationRelationMapper.deleteByExample(goodClassificationRelationExample);
-        gmsGoodParam.getClassificationList().stream().forEach(item -> {
-            GmsGoodClassificationRelation goodClassificationRelation = new GmsGoodClassificationRelation();
-            goodClassificationRelation.setGoodId(id);
-            goodClassificationRelation.setClassificationId(item.getId());
-            goodClassificationRelationMapper.insertSelective(goodClassificationRelation);
-        });
+        if(gmsGoodParam.getClassificationList() != null){
+            GmsGoodClassificationRelationExample goodClassificationRelationExample = new GmsGoodClassificationRelationExample();
+            goodClassificationRelationExample.createCriteria().andGoodIdEqualTo(id);
+            goodClassificationRelationMapper.deleteByExample(goodClassificationRelationExample);
+            gmsGoodParam.getClassificationList().stream().forEach(item -> {
+                GmsGoodClassificationRelation goodClassificationRelation = new GmsGoodClassificationRelation();
+                goodClassificationRelation.setGoodId(id);
+                goodClassificationRelation.setClassificationId(item);
+                goodClassificationRelationMapper.insertSelective(goodClassificationRelation);
+            });
+        }
         /*更新商品*/
         GmsGoodExample example = new GmsGoodExample();
         example.createCriteria().andIdEqualTo(id);
@@ -141,5 +143,14 @@ public class GmsGoodServiceImpl implements GmsGoodService {
             e.printStackTrace();
         }
         return count;
+    }
+
+    @Override
+    public int addInventory(Integer id,Integer addNum) {
+        GmsGood good = goodMapper.selectByPrimaryKey(id);
+        if(good.getInventory() == null){
+            good.setInventory(0);
+        }
+        return goodMapper.updateByPrimaryKeySelective(new GmsGood().setId(id).setInventory(good.getInventory() + addNum));
     }
 }

@@ -67,6 +67,6 @@ public class GmsGoodParam {
     private Integer status;
 
     @ApiModelProperty(value = "商品分类")
-    private List<GmsClassification> classificationList;
+    private List<Integer> classificationList;
 
 }

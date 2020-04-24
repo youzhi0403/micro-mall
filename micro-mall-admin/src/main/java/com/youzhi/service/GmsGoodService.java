@@ -52,4 +52,11 @@ public interface GmsGoodService {
      * @return
      */
     int importGoods(MultipartFile file);
+
+    /**
+     * 补充库存数量
+     * @param addNum
+     * @return
+     */
+    int addInventory(Integer id,Integer addNum);
 }

@@ -88,6 +88,18 @@ public class GmsGoodController {
         }
     }
 
+    @ApiOperation("补充入库")
+    @RequestMapping(value = "/addInventory/{id}",method = RequestMethod.POST)
+    @ResponseBody
+    public Object addInventory(@PathVariable Integer id,@RequestParam("addNum") Integer addNum){
+        int count = goodService.addInventory(id,addNum);
+        if(count == 1){
+            return new CommonResult().success(null);
+        }else{
+            return new CommonResult().failed();
+        }
+    }
+
     @ApiOperation(value = "导入商品excel表",httpMethod = "POST",notes = "notes")
     @RequestMapping(value = "/import",method = RequestMethod.POST)
     @ResponseBody

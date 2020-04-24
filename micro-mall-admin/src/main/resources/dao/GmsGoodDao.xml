@@ -15,7 +15,7 @@
         where
           g.delete_status = 0
           <if test="queryParam.keyword != null and queryParam.keyword != ''">
-            and g.name like %#{queryParam.keyword}%
+            and g.name like CONCAT('%',#{queryParam.keyword},'%')
           </if>
           <if test="queryParam.status != null">
             and g.status = #{queryParam.status}

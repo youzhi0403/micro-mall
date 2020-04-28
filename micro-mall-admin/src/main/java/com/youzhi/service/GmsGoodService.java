@@ -59,4 +59,11 @@ public interface GmsGoodService {
      * @return
      */
     int addInventory(Integer id,Integer addNum);
+
+    /**
+     * 获取商品详情
+     * @param id
+     * @return
+     */
+    GmsGoodVo detail(Integer id);
 }

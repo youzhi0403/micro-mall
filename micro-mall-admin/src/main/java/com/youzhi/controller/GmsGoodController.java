@@ -4,6 +4,7 @@ import com.youzhi.dto.CommonResult;
 import com.youzhi.dto.GmsGoodParam;
 import com.youzhi.dto.GmsGoodQueryParam;
 import com.youzhi.dto.GmsGoodVo;
+import com.youzhi.model.GmsGood;
 import com.youzhi.service.GmsGoodService;
 import com.youzhi.util.ExcelUtil;
 import io.swagger.annotations.Api;
@@ -115,6 +116,14 @@ public class GmsGoodController {
     /*@PreAuthorize("hasAuthority('good:add')")*/
     public void downloadTemplate(HttpServletResponse response) throws IOException {
         ExcelUtil.downloadTemplate(response,"goodsTemplate","商品导入模板");
+    }
+
+    @ApiOperation("获取商品详情")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object detail(@PathVariable Integer id){
+        GmsGoodVo gmsGoodVo = goodService.detail(id);
+        return new CommonResult().success(gmsGoodVo);
     }
 
 }

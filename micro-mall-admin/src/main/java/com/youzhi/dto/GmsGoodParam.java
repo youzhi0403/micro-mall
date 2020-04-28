@@ -33,7 +33,7 @@ public class GmsGoodParam {
     private BigDecimal price;
 
     @ApiModelProperty(value = "功能主治")
-    private String function;
+    private String goodFunction;
 
     @ApiModelProperty(value = "生产厂家")
     private String manufacturer;
@@ -51,7 +51,7 @@ public class GmsGoodParam {
     private String specification;
 
     @ApiModelProperty(value = "用法用量")
-    private String usage;
+    private String goodUsage;
 
     @ApiModelProperty(value = "通用名称")
     private String commonName;

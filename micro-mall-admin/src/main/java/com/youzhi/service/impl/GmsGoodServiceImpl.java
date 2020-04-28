@@ -26,6 +26,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author cwj
@@ -152,5 +153,25 @@ public class GmsGoodServiceImpl implements GmsGoodService {
             good.setInventory(0);
         }
         return goodMapper.updateByPrimaryKeySelective(new GmsGood().setId(id).setInventory(good.getInventory() + addNum));
+    }
+
+    @Override
+    public GmsGoodVo detail(Integer id) {
+        GmsGoodVo gmsGoodVo = goodDao.detail(id);
+        List<Integer> classificationIds = new ArrayList<>();
+        List<Integer> classificationNormalIds = new ArrayList<>();
+        List<Integer> classificationBodyIds = new ArrayList<>();
+        List<Integer> classificationDepartmentIds = new ArrayList<>();
+        if(gmsGoodVo.getClassificationList() != null){
+            classificationIds = gmsGoodVo.getClassificationList().stream().map(item -> item.getId()).collect(Collectors.toList());
+            classificationNormalIds = gmsGoodVo.getClassificationList().stream().filter(item -> item.getKind() == 0).map(item -> item.getId()).collect(Collectors.toList());
+            classificationBodyIds = gmsGoodVo.getClassificationList().stream().filter(item -> item.getKind() == 1).map(item -> item.getId()).collect(Collectors.toList());
+            classificationDepartmentIds = gmsGoodVo.getClassificationList().stream().filter(item -> item.getKind() == 2).map(item -> item.getId()).collect(Collectors.toList());
+        }
+        gmsGoodVo.setClassificationIds(classificationIds);
+        gmsGoodVo.setClassificationNormalIds(classificationNormalIds);
+        gmsGoodVo.setClassificationBodyIds(classificationBodyIds);
+        gmsGoodVo.setClassificationDepartmentIds(classificationDepartmentIds);
+        return gmsGoodVo;
     }
 }

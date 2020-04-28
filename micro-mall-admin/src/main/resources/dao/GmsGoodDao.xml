@@ -58,5 +58,18 @@
         </foreach>
     </insert>
 
+    <select id="detail" resultMap="goodVoResultMap">
+        select g.*,
+        cla.id classification_id,
+        cla.name classification_name,
+        cla.level classification_level,
+        cla.parent_id classification_parent_id,
+        cla.kind classification_kind
+        from
+        gms_good g
+        left join gms_good_classification_relation gcr on gcr.good_id = g.id
+        left join gms_classification cla on cla.id = gcr.classification_id
+        where g.id = #{id}
+    </select>
 
 </mapper>

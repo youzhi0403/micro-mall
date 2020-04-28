@@ -12,11 +12,13 @@ import java.util.List;
  */
 @Data
 public class GmsGoodVo extends GmsGood {
-    List<Integer> classificationList;
+    List<Integer> classificationIds;
 
     List<Integer> classificationNormalIds;
 
     List<Integer> classificationBodyIds;
 
     List<Integer> classificationDepartmentIds;
+
+    List<GmsClassification> classificationList;
 }

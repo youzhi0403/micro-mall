@@ -16,4 +16,6 @@ public interface GmsGoodDao {
     List<GmsGoodVo> list(@Param("queryParam") GmsGoodQueryParam queryParam);
 
     int addBatch(List<GmsGood> goodList);
+
+    GmsGoodVo detail(@Param("id") Integer id);
 }

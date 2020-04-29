@@ -3,17 +3,17 @@
 <mapper namespace="com.youzhi.dao.UmsAccountRecordDao">
     <select id="list" resultMap="com.youzhi.mapper.UmsAccountRecordMapper.BaseResultMap">
         select *
-        from ums_account_record
-        left join ums_user u on u.id = account_record.user_id
+        from ums_account_record a
+        left join ums_user u on u.id = a.user_id
         where
         1 = 1
         <if test="queryParam.createTime != null">
-            and DATE_FORMAT(account_record.create_time,'yyyy-MM-dd') = DATE_FORMAT(queryParam.createTime,'yyyy-MM-dd')
+            and DATE_FORMAT(a.create_time,'yyyy-MM-dd') = DATE_FORMAT(queryParam.createTime,'yyyy-MM-dd')
         </if>
         <if test="queryParam.account != null">
             and u.account = #{queryParam.account}
         </if>
-        order by account_record.create_time desc
+        order by a.create_time desc
     </select>
 
 </mapper>

@@ -139,7 +139,12 @@ public class GmsGoodServiceImpl implements GmsGoodService {
                         .setDeleteStatus(0);
                 goodList.add(good);
             }
-            count = goodDao.addBatch(goodList);
+            if(goodList.size() > 0){
+                count = goodDao.addBatch(goodList);
+            }else{
+                count = 0;
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

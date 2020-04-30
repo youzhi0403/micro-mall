@@ -1,5 +1,6 @@
 package com.youzhi.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.youzhi.validator.FlagValidator;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 /**
  * @author youzhi
@@ -20,7 +22,7 @@ public class UmsAccountRecordQueryParam {
     private String account;
 
     @ApiModelProperty(value = "创建时间")
-    private String createTime;
+    private Long createTime;
 
 
 }

@@ -8,7 +8,7 @@
         where
         1 = 1
         <if test="queryParam.createTime != null">
-            and DATE_FORMAT(a.create_time,'yyyy-MM-dd') = DATE_FORMAT(queryParam.createTime,'yyyy-MM-dd')
+            and DATE_FORMAT(a.create_time,'yyyy-MM-dd') = from_unixtime(#{queryParam.createTime}/1000,'yyyy-MM-dd')
         </if>
         <if test="queryParam.account != null">
             and u.account = #{queryParam.account}

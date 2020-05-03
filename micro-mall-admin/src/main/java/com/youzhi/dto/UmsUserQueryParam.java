@@ -19,5 +19,5 @@ public class UmsUserQueryParam {
     private String nickname;
 
     @ApiModelProperty("是否禁用")
-    private Integer deleteStatus;
+    private Integer status;
 }

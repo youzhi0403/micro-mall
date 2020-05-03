@@ -34,7 +34,8 @@ public class UmsUserServiceImpl implements UmsUserService {
     @Override
     public List<UmsUser> listPage(UmsUserQueryParam queryParam, Integer pageSize, Integer pageNum) {
         PageHelper.startPage(pageNum,pageSize);
-        return userDao.list(queryParam);
+        List<UmsUser> result = userDao.list(queryParam);
+        return result;
     }
 
     @Override

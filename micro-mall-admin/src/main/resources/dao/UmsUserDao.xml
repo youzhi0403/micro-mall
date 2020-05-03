@@ -8,17 +8,17 @@
         ums_user u
         where
         1 = 1
-        <if test="queryParam.nickname != null">
-            and u.nickname like %#{queryParam.nickname}%
+        <if test="queryParam.nickname != null and queryParam.nickname != ''">
+            and u.nickname LIKE CONCAT('%',#{queryParam.nickname}, '%')
         </if>
-        <if test="queryParam.account != null">
+        <if test="queryParam.account != null and queryParam.account != ''">
             and u.account = #{queryParam.account}
         </if>
-        <if test="queryParam.telephone != null">
+        <if test="queryParam.telephone != null and queryParam.telephone != ''">
             and u.telephone = #{queryParam.telephone}
         </if>
-        <if test="queryParam.deleteStatus != null">
-            and u.delete_status = #{queryParam.deleteStatus}
+        <if test="queryParam.status != null and queryParam.status != ''">
+            and u.status = #{queryParam.status}
         </if>
         order by u.create_time desc
     </select>

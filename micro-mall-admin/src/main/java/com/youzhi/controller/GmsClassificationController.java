@@ -96,11 +96,19 @@ public class GmsClassificationController {
         return new CommonResult().success(list);
     }
 
-    @ApiOperation("以层级结构返回所有分类")
+    @ApiOperation("以层级结构返回指定类型分类")
     @RequestMapping(value = "/treeList/{kind}", method = RequestMethod.GET)
     @ResponseBody
     public Object treeList(@PathVariable Integer kind){
         List<GmsClassificationNode> classificationNodeList = classificationService.treeList(kind);
+        return new CommonResult().success(classificationNodeList);
+    }
+
+    @ApiOperation("以层级结构返回所有分类")
+    @RequestMapping(value = "/treeList", method = RequestMethod.GET)
+    @ResponseBody
+    public Object treeList(){
+        List<GmsClassificationNode> classificationNodeList = classificationService.treeList();
         return new CommonResult().success(classificationNodeList);
     }
 

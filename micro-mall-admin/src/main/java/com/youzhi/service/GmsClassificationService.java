@@ -25,5 +25,7 @@ public interface GmsClassificationService {
 
     List<GmsClassificationNode> treeList(Integer kind);
 
+    List<GmsClassificationNode> treeList();
+
     GmsClassificationVo detail(Integer id);
 }

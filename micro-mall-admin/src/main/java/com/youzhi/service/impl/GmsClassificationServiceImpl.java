@@ -94,6 +94,15 @@ public class GmsClassificationServiceImpl implements GmsClassificationService {
     }
 
     @Override
+    public List<GmsClassificationNode> treeList() {
+        List<GmsClassification> classificationList = classificationMapper.selectByExample(new GmsClassificationExample());
+        List<GmsClassificationNode> result = classificationList.stream()
+                .filter(classification -> classification.getParentId().equals(0))
+                .map(classification -> covert(classification,classificationList)).collect(Collectors.toList());
+        return result;
+    }
+
+    @Override
     public GmsClassificationVo detail(Integer id) {
         GmsClassification classification = classificationMapper.selectByPrimaryKey(id);
         GmsClassificationVo result = new GmsClassificationVo();

@@ -3,6 +3,7 @@ package com.youzhi.service;
 import com.youzhi.dto.GmsGoodParam;
 import com.youzhi.dto.GmsGoodQueryParam;
 import com.youzhi.dto.GmsGoodVo;
+import com.youzhi.model.GmsGood;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -66,4 +67,10 @@ public interface GmsGoodService {
      * @return
      */
     GmsGoodVo detail(Integer id);
+
+    /**
+     * 获取所有商品
+     * @return
+     */
+    List<GmsGood> getList(String keyword);
 }

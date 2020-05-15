@@ -179,4 +179,11 @@ public class GmsGoodServiceImpl implements GmsGoodService {
         gmsGoodVo.setClassificationDepartmentIds(classificationDepartmentIds);
         return gmsGoodVo;
     }
+
+    @Override
+    public List<GmsGood> getList(String keyword) {
+        GmsGoodExample goodExample = new GmsGoodExample();
+        goodExample.createCriteria().andNameLike("%" + keyword + "%");
+        return goodMapper.selectByExample(goodExample);
+    }
 }

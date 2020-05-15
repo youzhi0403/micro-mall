@@ -126,4 +126,12 @@ public class GmsGoodController {
         return new CommonResult().success(gmsGoodVo);
     }
 
+    @ApiOperation("获取所有商品,用于前端下拉框展示")
+    @RequestMapping(value = "/getList", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getList(@RequestParam(required = false) String keyword){
+        List<GmsGood> goodList = goodService.getList(keyword);
+        return new CommonResult().success(goodList);
+    }
+
 }
